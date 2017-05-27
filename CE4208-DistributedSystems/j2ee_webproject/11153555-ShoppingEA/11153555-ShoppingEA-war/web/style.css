@@ -1,0 +1,60 @@
+/* 
+    Document   : style
+    Created on : Mar 30, 2012, 10:39:05 AM
+    Author     : Roberto Casadei, 11153555
+    Description: Basic layout and style for the shop application.
+*/
+
+body, div, *{
+    margin:0;
+    padding:0;
+}
+
+#body{
+    margin-left:5%;
+    margin-right:5%;
+    border:1px solid #aa0000;
+}
+
+p.imp{
+    color:#f00;
+    font-size:120%;
+}
+
+#top{
+    background-color:#aa0000;
+    color:#fff;
+    padding:10px;
+}
+
+#top a:link, #top a:visited, #top a:active{
+    color:#fa5;
+    border-bottom:1px solid #ededed;
+    text-decoration:none;
+    font-size:120%;
+}
+
+#content a:link, #content a:visited, #content a:active, #content a:hover{
+    font-family:verdana;
+    color:#00a;
+    border-bottom:2px solid #f00;
+    text-decoration:none;
+}
+#content a:hover{
+    border-color:#00f;
+    background-color:#ededed;
+}
+
+
+#content{
+    padding:10px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#footer{
+    background-color:#aa0000;
+    color:#fff;
+    padding:10px;
+}
+

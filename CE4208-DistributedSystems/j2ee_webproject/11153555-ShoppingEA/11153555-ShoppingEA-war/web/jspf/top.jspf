@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        
+        <style type="text/css">
+            @import url("style.css");
+        </style>
+        
+    </head>
+    <body>
+        
+<div id="body">
+    
+    <div id="top">
+        <h2>Roberto Casadei, 11153555, Erasmus</h2>
+        <h2>CE4208 - Distributed Systems</h2>
+        <h2>Project - Spring 2012 - Due on Friday the 20th of April</h2>
+    </div>
+    
+    <div id="content">
+        <h1>Shopping Enterprise Application</h1>
+        <hr style="border:1px solid #ababab; margin-top:4px;" /><br />
+        
+        <a href="index.jsp">Home</a> | 
+        <a href="PopulatorServlet">Populate the database</a> | 
+        <a href="SearchBooksServlet">Display all the books</a> |
+        <a href="CartServlet">YOUR CART</a> 
+        <br /><br />
