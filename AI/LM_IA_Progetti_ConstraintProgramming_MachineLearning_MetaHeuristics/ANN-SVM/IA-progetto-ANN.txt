@@ -1,0 +1,10 @@
+Esame di Intelligenza Artificiale
+Modulo di Reti Neurali e SVM, progetto per l'esame.
+
+Il candidato utilizzi due diversi classificatori (MLdemos o altri eseguibili, eventualmente realizzati dal candidato) e ne confronti l'efficacia su una istanza di un problema di classificazione.
+
+L'istanza puo' essere una qualunque scaricabile dal Machine Learning Repository di UC Irvine (http://archive.ics.uci.edu/ml/) o un'altra in formato compatibile proposta dal candidato.
+
+Il candidato e' tenuto a presentare un test statistico di differenza di medie sui risultati ottenuti applicando ciascuno degli algoritmi 10 volte all'istanza, selezionando ogni volta in modo diverso (replicabile!) il sottinsieme di training e quello di test. La presentazione consistera' negli eseguibili e nel file di dati e in un foglio (1! Se due o piu' sarete invitati a tornale l'appello successivo con un unico foglio) dove si specificano gli algoritmi, l'istanza e i dati del test. Gli eseguibili dovranno poter girare su una macchina a me disponibile.
+
+La soluzione verra' sommariamente discussa. Affermazioni che evidenzino manifesta ignoranza del candidato sulle modalita' di funzionamento del proprio codice, o del tipo "non ricordo, l'ho fatto tanto tempo fa ...." garantiranno l'invito a presentarsi all'appello successivo.

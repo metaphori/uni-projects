@@ -1,0 +1,49 @@
+  val files = new File("tsp").listFiles()
+  files.sortBy(f => f.getName()).foreach(curr_file => {
+	  val pattern = """p(\d+)\.(\w+)""".r
+	  
+	  pattern.findFirstMatchIn(curr_file.getName()).foreach(m => m match {
+	    case pattern(idstr,ext) => {
+	      
+	      if(ext=="txt"){
+	        val id = idstr.toInt
+	        
+	        var k = 0
+	        var tsp_type:Int = 0
+	        var tsp_m:Int = 0
+	        var tsp_n:Int = 0
+	        var tsp_t:Int = 0
+	        var tsp_nodes:List[Node] = List()
+	        Source.fromFile(curr_file, "utf-8").getLines().foreach( l => {
+	        	val parts = l.stripMargin.split(" ").filterNot(c => c=="")
+	        	
+	        	if(l.size<=1){// empty line
+	        	  k=k+1
+	        	} else if(k==0){ // first line => 4 information:    type m n t
+	        	  k=k+1
+	        	  tsp_type = parts(0).toInt
+	        	  tsp_m = parts(1).toInt
+	        	  tsp_n = parts(2).toInt
+	        	  tsp_t = parts(3).toInt
+	        	} else if(k>0 && k<=tsp_t ){
+	        	  // do nothing as these lines are about particular TSP problems (period)
+	        	  k=k+1
+	        	} else{
+	        	  // next lines contain, for each customer, the following information:
+	        	  // 		cust_id x y d q f a list e l
+	        	  // the information after x and y is specific to particular TSP problems
+	        	  // and here are NOT considered
+	        	  k=k+1
+	        	  tsp_nodes = new Node(parts(1).toInt, parts(2).toInt) :: tsp_nodes
+	        	}
+	        })
+	        
+	        tsps(id) = new TSP(tsp_nodes)
+	        println("Created TSP: " + tsps(id))
+	      } else { // ext=="res"
+	        
+	      }
+	      
+	    }
+	  })
+  })

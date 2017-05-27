@@ -1,0 +1,30 @@
+Folds: 10	Num instances: 1728	 Fold size: 173.0
+Correct/incorrect classifications at fold0: 173.0 --- 0.0 (100.0%)
+Correct/incorrect classifications at fold1: 173.0 --- 0.0 (100.0%)
+Correct/incorrect classifications at fold2: 173.0 --- 0.0 (100.0%)
+Correct/incorrect classifications at fold3: 171.0 --- 2.0 (98.84393063583815%)
+Correct/incorrect classifications at fold4: 172.0 --- 1.0 (99.42196531791907%)
+Correct/incorrect classifications at fold5: 171.0 --- 2.0 (98.84393063583815%)
+Correct/incorrect classifications at fold6: 170.0 --- 3.0 (98.26589595375722%)
+Correct/incorrect classifications at fold7: 173.0 --- 0.0 (100.0%)
+Correct/incorrect classifications at fold8: 172.0 --- 0.0 (100.0%)
+Correct/incorrect classifications at fold9: 169.0 --- 3.0 (98.25581395348837%)
+
+Correctly Classified Instances        1717               99.3634 %
+Incorrectly Classified Instances        11                0.6366 %
+Kappa statistic                          0.9861
+Mean absolute error                      0.0066
+Root mean squared error                  0.0494
+Relative absolute error                  2.8871 %
+Root relative squared error             14.6162 %
+Total Number of Instances             1728     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.998     0.01       0.996     0.998     0.997      1        unacc
+                 0.982     0.001      0.995     0.982     0.988      0.999    acc
+                 1         0.002      0.958     1         0.979      1        good
+                 0.985     0.001      0.985     0.985     0.985      1        vgood
+Weighted Avg.    0.994     0.007      0.994     0.994     0.994      1    
+

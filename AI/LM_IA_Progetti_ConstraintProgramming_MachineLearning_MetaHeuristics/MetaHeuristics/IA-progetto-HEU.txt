@@ -1,0 +1,15 @@
+Esame di Intelligenza Artificiale
+Modulo di algoritmi euristici e metaeuristici, progetto per l'esame.
+
+Il candidato utilizzi due diversi algoritmi euristici o metauristici e li provi su almeno 10 istanze di un problema a sua scelta.
+
+Le istanze possono essere scelte fra quelle di un problema qualunque riportato nella OR-library  (http://people.brunel.ac.uk/~mastjjb/jeb/info.html) o altre di interesse del candidato. In quest'ultimo caso e' pero' necessario giustificare il problema e le istanze, evitando contesti banali.
+
+Il candidato e' tenuto a presentare un test statistico di differenza di medie sui risultati ottenuti applicando ciascuno degli algoritmi alle 10 istanza. La presentazione consistera' nei sorgenti (se c#, ANSI c o c++) o negli eseguibili, e nei file di dati e in un foglio (1! Se due o piu' sarete invitati a tornale l'appello successivo con un unico foglio) dove si specificano gli algoritmi e le istanze del test. 
+I codici dovranno poter girare su una macchina a me disponibile.
+
+La soluzione verra' sommariamente discussa. Affermazioni che evidenzino manifesta ignoranza del candidato sulle modalita' di funzionamento del proprio codice, o del tipo "non ricordo, l'ho fatto tanto tempo fa ...." garantiranno l'invito a presentarsi all'appello successivo.
+
+****************************
+TODO: COMPLESSITA' ALGORITMI
+****************************

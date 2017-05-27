@@ -1,0 +1,19 @@
+Esame di Intelligenza Artificiale
+Modulo di Constraint Programming, progetto per l'esame.
+
+Il candidato sviluppi un modello minizinc, contenuto in un file .mzn, che leggendo i dati da un opportuno file .dzn, risolva un problema - a scelta del candidato - fra quelli di questo elenco:
+- Job shop scheduling
+- Vehicle routing
+- Flusso in rete a costo minimo
+- Perfect square
+- N regine
+- Problema della dieta
+- Facility location
+- Bin packing
+- Problema dei trasporti non bilanciato
+
+E' accettabile anche un qualunque altro problema di intresse del candidato, a condizione che sia non triviale da risolvere.
+
+Il candidato e' tenuto a presentare i file mzn e dzn *che verranno testati da me su una mia macchina* e un foglio (1! Se due o pia' sarete invitati a tornale l'appello successivo con un unico foglio) dove si descrive il problema e gli elementi essenziali della soluzione.
+
+La soluzione verra' sommariamente discussa. Affermazioni che evidenzino manifesta ignoranza del candidato sulle modalita' di funzionamento del proprio codice, o del tipo "non ricordo, l'ho fatto tanto tempo fa ...." garantiranno l'invito a presentarsi all'appello successivo.
