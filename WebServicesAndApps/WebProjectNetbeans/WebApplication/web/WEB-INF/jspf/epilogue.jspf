@@ -1,0 +1,20 @@
+                </div> <!-- end content -->
+            </div> <!-- end content container -->
+
+            <div class="clearer"></div>
+            
+        </div> <!-- end container -->
+
+        <div class="clearer"></div>
+        
+        <div id="footer">
+            <p>
+                <img width="70" src="${pageContext.request.contextPath}/multimedia/icon_html5.png"
+                     alt="HTML5 badge" />
+                <img width="70" src="${pageContext.request.contextPath}/multimedia/icon_css3.png" 
+                     alt="CSS3 badge" />
+            </p>
+            
+            <p class="notice">NOTE: the images of Dixit are used for demonstrative purposes.
+                The pictures belong to their respective owners.</p>          
+        </div>

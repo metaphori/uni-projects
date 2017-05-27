@@ -1,0 +1,69 @@
+
+        <div id="top">            
+            <div class="left">
+                <span><i class="fa fa-tasks"></i> Progetto per il corso ASW 14-15</span> 
+            </div>           
+            <div class="right">
+                <span>Roberto Casadei <i class="fa fa-graduation-cap"></i></span>
+            </div>   
+           <div class="clearer"></div>  
+        </div>
+        
+        <div id="header">
+            
+            <div id="hinner">
+                <div id="divlogo">
+                    <img src="${pageContext.request.contextPath}/multimedia/logo.png" 
+                         width="200" alt="Ipse Dixit logo" />
+                </div>
+                <div id="divuser">
+                    <span class="headertext">
+                        <i class="fa fa-user"></i> 
+                        Hello, <%= session.getAttribute("username") != null 
+                                ? ("<u>"+session.getAttribute("username")+"</u>!")
+                                        : "guest" %> 
+                    </span>
+                </div>                       
+                <div id="divbar">
+                    <span class="headertext"> 
+                        <a href="${pageContext.request.contextPath}/Home"><i class="fa fa-sitemap"></i></a>
+                        <span id="pagetitle">
+                            <% if(request.getAttribute("PageTitle")!=null){ out.print(request.getAttribute("PageTitle")); } %>
+                        </span>  
+                    </span>                  
+                </div>                    
+                <div class="clearer"></div>
+            </div>
+            
+        </div>
+
+        <div id="container">
+
+            <div id="leftmenu"></div>
+            
+            <div id="menu">
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/Home">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath}/About">About</a></li>
+                    <li class="menu_separator"></li>
+                    <% if(session.getAttribute("username")==null){ %>
+                    <li><a href="${pageContext.request.contextPath}/Register">Register</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Login">Login</a></li>
+                    <% } else { %>
+                    <li><a href="${pageContext.request.contextPath}/Logout">Logout</a></li>
+                    <li><a href="${pageContext.request.contextPath}/NewMatch">New match</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Play">Join a match</a></li>
+                    <li><a href="${pageContext.request.contextPath}/Play?random=random">Random match</a></li>
+                    <% } %>
+                    <!--
+                    <li class="menu_separator"></li>
+                    <li><a href="jsp/observe.jsp" title="Observe a Game">Observe a game</a></li>
+                    <li><a href="#">Statistics</a></li>
+                    <li><a href="#">Rules</a></li>
+                    -->
+                </ul>
+            </div>
+
+            <div id="content_container">
+                
+                <div id="content">

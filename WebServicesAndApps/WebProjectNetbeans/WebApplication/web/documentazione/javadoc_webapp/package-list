@@ -1,0 +1,13 @@
+asw1022.controllers
+asw1022.controllers.game
+asw1022.controllers.home
+asw1022.controllers.user
+asw1022.db
+asw1022.filters
+asw1022.kb
+asw1022.managers
+asw1022.model
+asw1022.model.dixit
+asw1022.repositories
+asw1022.services
+asw1022.utils

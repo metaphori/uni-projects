@@ -1,0 +1,32 @@
+<%@page import="org.apache.commons.lang3.StringEscapeUtils"%>
+<%@page import="asw1022.utils.ValidationError"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page pageEncoding="UTF-8" %>
+
+        <% 
+            List<ValidationError> errors = (List<ValidationError>)request.getAttribute("Errors");
+            String jsArrayInvalidFields = "['invalidFieldName'";
+            if(errors!=null && errors.size()>0){
+        %>  
+        <ul class="error">
+            <% for(ValidationError error : errors){ %>
+            <% jsArrayInvalidFields += ",\""+ StringEscapeUtils.escapeEcmaScript(error.fieldName) + "\""; %>
+            <li><%= error.errorMsg %></li>
+            <% } %>
+        </ul>
+        <% 
+            } 
+            jsArrayInvalidFields += "]";
+        %>
+        
+        <script type="text/javascript">
+            if(window.jQuery){
+                invalidFields = <%= jsArrayInvalidFields %>;
+                $().ready(function(){
+                    for(i=0; i<invalidFields.length; i++){
+                        $('[name='+invalidFields[i]+']').addClass('validationError');
+                    }
+                });
+            }
+        </script>

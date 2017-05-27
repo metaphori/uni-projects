@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://isi-tomcat.csr.unibo.it:8080/~roberto.casadei12/xml-types/">
+
+    <xs:complexType name="GameInfoType">            
+        <xs:sequence>
+            <xs:element name="Players" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Player" maxOccurs="unbounded" type="PlayerType" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="YourCards" type="SetOfCardsType" maxOccurs="1" />
+            <xs:element name="Phrase" type="xs:string" minOccurs="0" />
+            <xs:element name="SelectedCard" type="xs:string" minOccurs="0" />
+            <xs:element name="VotedCard" type="xs:string" minOccurs="0" />
+            <xs:element name="CardsOnTable" type="SetOfCardsType" minOccurs="0" />
+            <xs:element name="UncoveredCards" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Selection" maxOccurs="unbounded" type="SelectionType" />
+                    </xs:sequence>
+                </xs:complexType>                    
+            </xs:element>
+            <xs:element name="Votes" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Vote" maxOccurs="unbounded" type="VoteType" />
+                    </xs:sequence>
+                </xs:complexType>                     
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="phase" type="xs:string"></xs:attribute>
+        <xs:attribute name="turn" type="xs:string"></xs:attribute>
+        <xs:attribute name="winner" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    
+    <xs:complexType name="PlayerType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="points" type="xs:int"></xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>    
+    
+    <xs:complexType name="CardType">
+        <xs:attribute name="cardId" type="xs:string"></xs:attribute>
+        <xs:attribute name="cardTitle" type="xs:string"></xs:attribute>
+        <xs:attribute name="cardUrl" type="xs:string"></xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="SetOfCardsType">
+        <xs:sequence>
+            <xs:element name="Card" maxOccurs="unbounded" type="CardType" />
+        </xs:sequence>
+    </xs:complexType> 
+
+    <xs:complexType name="SelectionType">
+        <xs:attribute name="by" type="xs:string"></xs:attribute>
+        <xs:attribute name="card" type="xs:string"></xs:attribute>
+    </xs:complexType>    
+    
+    <xs:complexType name="VoteType">
+        <xs:attribute name="by" type="xs:string"></xs:attribute>
+        <xs:attribute name="toCard" type="xs:string"></xs:attribute>
+    </xs:complexType>     
+</xs:schema>

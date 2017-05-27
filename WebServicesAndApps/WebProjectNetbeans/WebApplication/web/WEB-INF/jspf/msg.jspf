@@ -1,0 +1,11 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<% if(request.getAttribute("msg")!=null){ %>
+    <div id="message">
+        <span class="title">Message</span>
+            <p class="message"><%= request.getAttribute("msg") %>
+            <% if(request.getAttribute("redirectUrl")!=null){ %>
+                <p class="message"><a href="<%= request.getAttribute("redirectUrl") %>"><%= request.getAttribute("destinationName") %></a>.</p>
+            <% } %>
+    </div>
+<% } %>    

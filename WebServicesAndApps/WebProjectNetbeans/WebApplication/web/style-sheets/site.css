@@ -1,0 +1,498 @@
+/* 
+    Created on : 20-Dec-2014, 12:59:31
+    Author     : Roberto Casadei <roberto.casadei12@studio.unibo.it>
+*/
+
+/*************/
+/* Reset css */
+/*************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+        font-family: Tahoma, Verdana, Segoe, sans-serif;
+        background-color:#ededed;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/********************/
+/* Main page blocks */
+/********************/
+
+#top {
+    background-color: #1B3C6B;
+    color:#eee;
+    width:100%; 
+    border-bottom:2px solid #69B;
+}
+
+#container {
+    margin-left:0;
+    margin-right:2%;
+    width:96%;
+    background-color: #366AC9;
+}
+
+#header{
+    /*
+    background: -webkit-linear-gradient(#1B3C6B, #366AC9); // For Safari 5.1 to 6.0 
+    background: -o-linear-gradient(#1B3C6B, #366AC9); // For Opera 11.1 to 12.0 
+    background: -moz-linear-gradient(#1B3C6B, #366AC9); // For Firefox 3.6 to 15
+    background: linear-gradient(#1B3C6B, #366AC9); // Standard syntax (must be last)
+    */
+    background:#366AC9;
+    padding:10px;
+}
+
+#content_container {
+    margin-left:180px;
+    border:10px solid #ededed;
+    background-color:#ededed;
+    border-radius:20px 0px 0px 20px; 
+    padding:20px;
+}
+
+#content {
+    min-height:400px;
+}
+
+.headertext {
+    display:inline-block;
+    font-size:100%;
+    font-weight:bold;
+    color:#fff;
+    margin-top:20px;
+    padding:10px;
+}
+#divlogo { width:200px; float:left; height:60px; }
+#divlogo img { width: 200px; }
+#divbar { margin-left:220px; margin-right:150px; height:60px; }
+#divuser { width:150px; float:right; height:60px; overflow: hidden; }
+
+#leftmenu {
+    float:left;
+    width:20px;
+    background-color:#ededed;
+    border:10px solid #ededed;
+    border-left:0;
+    border-radius:0px 20px 20px 0px;     
+    height:100%;
+}
+
+#menu {
+    float:left;
+    width:150px;
+    background-color:#366AC9;
+    padding-bottom:50px;
+}
+
+#footer{
+    border-top:8px solid #366AC9;
+    color:#eee;
+    width:100%;
+    background: -webkit-linear-gradient(#1B3C6B, #000); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#1B3C6B, #000); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#1B3C6B, #000); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#1B3C6B, #000); /* Standard syntax (must be last) */    
+    padding-bottom:40px;
+}
+
+/********************/
+/* Generic elements */
+/********************/
+
+.clearer { 
+    clear:both; 
+}
+
+.left{
+    float:left;
+    text-align:left;
+}
+
+.right{
+    float:right;
+    text-align:right;
+}
+
+.center{
+    text-align:center;
+    width:auto;
+}
+
+.error {
+    color:#a00;
+}
+
+h1{
+    font-size:150%;
+}
+h2 {
+    font-size:120%;
+}
+
+#content ol, p {
+    color:#1B3C6B;
+    line-height:1.4em;
+    margin-bottom:6px;
+}
+
+table {
+    width:100%;
+}
+table thead {
+    font-weight:bold;
+    background-color:#ededed;
+    color:#1B3C6B;
+}
+table td {
+    border:1px solid #ababab;
+    padding:4px;
+}
+
+tr.inMatch td {
+    border:2px solid #f00;
+}
+tr.setup td {
+    background-color:#CADFFF;
+}
+tr.end td{
+    background-color:#ababab;
+    opacity: 0.3;
+}
+
+em {
+    font-weight:bold; 
+}
+
+#content a { color:#a00; text-decoration:none; }
+#content a:hover { color:#f00; text-decoration: underline; }
+
+#message {
+    border:2px solid #666;
+    background-color:#ababab;
+    color:#000;
+    font-weight:bold;
+    padding:0;
+    margin:40px;
+}
+
+#message p {
+    margin:10px;
+}
+
+#message .title {
+    background-color:#666;
+    border:2px solid #666;
+    border-radius: 0 0 10px 0;
+    display:inline-block;
+    margin:0;
+    margin-bottom:10px;
+    padding:4px 25px 4px 25px;
+    color:#ededed;
+}
+
+/*********************/
+/* Top-page elements */
+/*********************/
+
+#top h1 {
+    color:#eee;
+    font-weight:bold;
+    text-align:center;
+}
+
+#top span{
+    display:inline-block;
+    padding:10px;
+    font-weight: bold;
+    font-size: 85%;
+    color:#ccc;
+}
+
+#header a:link, #header a:visited, #header a.active {
+    color:#ddd;
+}
+#header a:hover{
+    color:#fff;
+}
+
+/********/
+/* Menu */
+/********/
+
+#menu a { 
+    display:block; 
+    color:#ededed; 
+    text-decoration: none; 
+    background-color:#366AC9; 
+    padding:5px; 
+    border:1px solid #5A8FF2;
+    font-size:90%;
+    font-weight:bolder;
+    border-radius:10px;
+    text-align:center;
+}
+#menu a:hover { 
+    color:#fff; 
+    background-color:#5A8FF2;
+}
+#menu ul { margin-top:20px; }
+#menu li {
+    margin:20px 10px 0px 10px; 
+    padding:0; 
+    display:block;
+}
+#menu li .menu_separator { 
+    border-bottom:1px solid #82ADFF; 
+    margin:0; 
+    padding:0; 
+}
+#menu li .selected { background-color:#5A8FF2; }
+#menu li .selected { border-color:#1B3C6B;}
+
+/**********/
+/* Footer */
+/**********/
+
+#footer p { text-align:center; }
+
+#footer span { 
+    display:inline-block;
+    margin:20px; 
+    color:#bbb; 
+    font-weight:bold; 
+}
+
+#footer img { margin:20px; }
+
+#footer p.notice {
+    color:#bbb;
+    margin:10px;
+    padding:5px;
+    font-size:90%;
+}
+
+
+/*****************/
+/* Form elements */
+/*****************/
+
+.label{ font-weight:bold; }
+
+.formrow {
+    display:block;
+    width:100%;
+    padding:8px;
+}
+
+.formrow label {
+    display:block;
+    float:left;
+    color:#1B3C6B;
+    padding:10px;
+    font-weight:bold;
+    width:20%;
+}
+
+.formrow input, .formrow select {
+    display:block;
+    width:auto;
+    border:2px solid #558;
+    border-radius:4px;
+    color:#1B3C6B;
+    padding:5px;
+    margin-right:40%;
+}
+
+.validationError {
+    border-color:#f00 !important;
+}
+
+/********************/
+/* Content elements */
+/********************/
+
+#content ol, #content ul{
+    margin:10px;
+}
+#content li {
+    list-style: decimal;
+    margin:10px;
+}
+
+#content h1, #content h2 {
+    display:block;
+    font-weight:bold;
+    border-bottom:1px solid #ededed;
+    color:#444;
+    padding:2px;
+    margin:5px;
+}
+#content h2 { margin-top:20px; }
+#content h2 i { background-color:#ababab; color:#1B3C6B; padding:5px; border-radius:10px; }
+
+/************************/
+/* Dixit(Game) elements */
+/************************/
+
+#todo {
+    text-align:center;
+    margin:20px;
+    font-size:115%;
+    color:#1B3C6B;
+    font-weight:bold;
+}
+
+#table {
+    float:left;
+    background-color:#ddd;
+    width:60%;
+    border:4px solid #1B3C6B;
+    border-radius:10px;
+    margin-bottom:10px;
+    min-height:200px;
+}
+
+#table h1, #playerpanel h1 {
+    border:4px solid #1B3C6B; 
+    border-top:0;
+    border-left:0;
+    padding:2px 10px 2px 10px;
+    border-radius:0px 0px 10px 0px;
+    margin:0; 
+    background-color:#1B3C6B; 
+    color:#ededed;
+    display:inline-block; 
+    font-size:110%;
+}
+
+#table p {
+    color:#1B3C6B;
+    display:block;
+    text-align:center;
+    font-size:110%;
+    margin:5px;
+}
+
+#playerpanel{
+    float:left;
+    background-color:#ddd;
+    width:60%;
+    border:4px solid #1B3C6B;
+    border-radius:10px;   
+    min-height:200px;
+}
+
+#gameinfo{
+    float:right;
+    width:30%;
+    background-color:#82ADFF;
+    height:auto;
+    padding:10px;
+    border-radius:4px;
+    color:#ededed;
+}
+
+#tablecards div, #playerpanel div{ margin:10px; }
+#tablecards, #playercards{ text-align:center; }
+#tablecards img, #playercards img { 
+    margin: 0; 
+    border:2px solid #fff; 
+}
+#tablecards img:hover, #playercards img:hover { border-color:#000; }
+
+div.dixitImgDiv { 
+    display:inline-block; 
+    vertical-align: top; 
+}
+
+img.selected { border:2px solid #5A8FF2; }
+
+#playerpanel label, #clue {
+    font-weight:bold;
+    color:#1B3C6B;
+}
+#playerpanel form { 
+    text-align:center; 
+    background-color:#bbb; 
+    border:1px solid #bbb; 
+    border-radius:10px;
+}
+#playerpanel input {
+    background-color:#fff;
+    color:#1B3C6B;
+    border:0;
+    padding:4px;
+    border-radius:10px;
+}
+
+#gameinfo h1 {
+    margin-top:15px;
+    color:#fff;
+}
+#gameinfo p { 
+    color:#ddd; 
+    font-size:100%; 
+}
+#gameinfo a { 
+    color:#C6FFFF; 
+    text-decoration:none; 
+    text-align:center; 
+    display:block; 
+    font-weight:bold;
+}
+
+input.fancybutton{
+    border:3px solid #1B3C6B;
+    background-color: #5A8FF2;
+    color:#fff;
+    font-weight:bold;
+    padding:10px;
+    border-radius: 15px;
+}
+input.fancybutton:hover{
+    background-color: #82ADFF;
+}
+
+.infobutton {
+    text-align:center;
+}

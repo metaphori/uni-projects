@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentazione: Ipse Dixit</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        
+        <style type="text/css">
+            body { color: #000; font-family: 'Verdana', sans-serif; font-size:120%; line-height:1.4em; }
+            h1, h2, h3, h4, h5 { color: #1B3C6B; margin:10px; margin-top:40px; margin-right:80px; padding:5px; }
+            h1 { font-size:280%; }
+            h2 { font-size:180%; }
+            h3 { font-size:150%; }
+            h4 { font-size:135%; margin-left:20px; }
+            h2 { border-bottom:1px solid #ccc; }
+            p { margin:40px; margin-bottom:5px; margin-top:10px; margin-right:80px; }
+            em { color:#227; font-style: normal; font-weight: bold; }
+            ul, ol { margin-left:40px; margin-right:80px; }
+            li { margin-bottom:8px; margin-top:5px;  }
+            a:link, a:visited, a:active { color:#a00; text-decoration:none; font-style: italic; }
+            a:hover { color: #f00; }
+            img { display:block; margin:20px auto; border:10px solid #444; }
+            pre { margin:10px 80px 10px 80px; background-color:#ededed; padding:20px;
+            border:10px solid #444;}
+            .explain { margin-left: 80px; border-left:8px solid #ddd; padding-left:10px; 
+            background-color:#eee;}
+            .explain p { margin-left:5px; }
+        </style>
+            
+        
+    </head>
+    <body>
+        
+        <h1>Ipse Dixit</h1>
+        
+        <p>Progetto per il corso di <em>Applicazioni e Servizi Web</em>, a.a. 2014-2015.</p>
+        
+        <h2>Autore</h2>
+        
+        <ul>
+            <li>Studente: <em>Roberto Casadei</em></li>
+            <li>Matricola: <em>0000687418</em></li>
+            <li>Email istituzionale: <em>roberto.casadei12@studio.unibo.it</em></li>
+        </ul>
+        
+        <h2>Descrizione del servizio offerto dal sito</h2>
+        
+        <p>Lo scopo del sito è quello di consentire ai suoi utenti di giocare al gioco <em>Dixit</em>.
+        Si tratta di un gioco multi-player a punti dove vengono usate carte figurate particolarmente 
+         evocative per stimolare l'intuito e l'arguzia dei partecipanti.</p>
+        <p>Il sito fornisce supporto, una volta che ci si è registrati e successivamente autenticati,
+            per la creazione di partite, l'accesso a partite create da altri 
+            utenti, e il gioco vero e proprio, attraverso un'opportuna interfaccia web.</p>
+        
+        <h2>Utilizzo del sito</h2>
+        
+        <p>Il sito è accessibile in diversa misura alle seguenti categorie di utenti:</p>
+        
+        <ul>
+            <li><em>Utente pubblico / visitatore</em>: è un utente che non ha eseguito il login. 
+              In questo status, non può visualizzare o giocare le partite, ma può navigare il resto
+             del sito e, in particolare, può registrarsi e loggarsi al sito.</li>
+            <li><em>Utente registrato</em>: è un utente che si è registrato ed è stato riconosciuto 
+             (autenticate) mediante la procedura di login. In quanto tale, può creare partite 
+             e giocarvi.</li>
+            <li><em>Amministratore</em>: questo utente non è gestito direttamente dal sito web, ma 
+             è colui che lo amministra e che ne monitora il funzionamento. 
+             In particolare, popola il database XML delle carte da gioco.</li>            
+        </ul>
+        
+        <h2>Realizzazione del sito</h2>    
+        
+        <h3>Descrizione sommaria</h3>
+        
+        <p>La <em>computazione lato client</em> è rappresentata essenzialmente da una 
+            <em>Rich Internet Application (RIA)</em> sviluppata in JavaScript. Essa costituisce il
+            front-end di gioco e fornisce ai giocatori la possibilità di compiere 
+            azioni di gioco e di ricevere notifiche relative all'evoluzione della partita in corso.</p>
+                
+        <p>La <em>computazione lato server</em> consiste in <em>servlet Java</em> e <em>pagine JSP</em> che 
+            collettivamente forniscono le seguenti funzionalità.</p>
+        <ul>
+            <li>Registrazione di utenti</li>
+            <li>Log-in con autenticazione mediante verifica delle credenziali inserite</li>
+            <li>Visualizzazione delle partite in corso</li>
+            <li>Accesso alle partite</li>
+        </ul>
+        <p>Inoltre, si fa uso di un <em>servizio web XML-over-HTTP</em> implementato tramite servlet 
+         asincrona per realizzare la logica di gioco e gestire le notifiche push da client a server
+         , implementate con la tecnica Comet <em>BOSH (Bi-directional-streams Over Synchronous HTTP)</em>.</p>
+
+        <p>Per quanto riguarda le <em>informazioni memorizzate sul server</em>, abbiamo:</p>
+        <ul>
+            <li>Il database (XML) degli utenti</li>
+            <li>Il database (XML) delle carte da gioco</li>
+        </ul>
+        
+        <p>Mentre le <em>informazioni scambiate in rete</em> includono, al di là dei dati delle form
+            e dei dati recuperati lato-server, i <em>documenti XML</em> (messaggi) che viaggiano
+            tra la RIA JavaScript e il servizio web, vale a dire: le azioni di gioco, i risultati
+            delle azioni di gioco, e lo stato delle partite.</p>
+        
+        <h3>Architettura e organizzazione</h3>
+        
+        <p>Il sito è realizzato con architettura <em>Model-View-Controller (MVC)</em>.</p>
+        
+        <div class="explain">
+            <p>Il pattern MVC è implementato nella seguente modalità:</p>
+            
+            <ul>
+                <li>Ogni servlet rappresenta una specifica <em>azione</em>.</li>
+                <li>Servlet (cioè azioni) correlate sono organizzate in package.</li>
+                <li>L'accesso al modello è mediato da classi Manager e Repository.</li>
+                <li>Le viste (pagine JSP) sono selezionate mediante forwarding.</li>
+            </ul>
+            
+            <p>L'approccio 1-servlet-per-azione differisce da quello impiegato in framework 
+             come Rails o ASP.NET MVC dove si hanno classi di tipo "Controller" e 
+            i metodi esposti rappresentano le azioni.</p>
+            
+            <p>Un vantaggio consiste nel fatto che ad ogni classe servlet viene
+             associata una ben precisa responsabilità, che ne semplifica la
+             comprensione. (<em>Single Responsibility Principle (SRP)</em>).</p>
+            
+        </div>
+        
+        <p>La RIA JavaScript fa uso della libreria Knockout per realizzare 
+            il pattern <em>Model-View-ViewModel (MVVM)</em>. </p>
+        
+        <p>L'accesso ai dati (database XML) da parte dei controller/servlet 
+            è mediato attraverso il pattern <em>Repository</em>. Inoltre, il 
+            repository delle carte è stato gestito in modalità <em>cached</em> utilizzando il
+            pattern <em>Singleton</em> per garantire l'accesso a un'unica istanza del repository.</p>
+        
+        <p>La logica relative a query complessi ai dati è incapsulata all'interno di 
+            classi <em>Manager</em>.</p>
+        
+        <div class="explain">
+            <p>In questo modo, i controller vengono semplificati in quanto 
+             gli è stata tolta la responsabilità di eseguire query particolarmente elaborate.
+             Si tratta di un'applicazione del principio <em>Keep It Simple Stupid (KISS)</em>.
+             Questa caratteristica diventa più importante quando la complessità dei 
+            controller cresce.</p>
+        </div>
+        
+        <p>Essendo la parte di autorizzazione un "crosscutting concern", la logica di 
+        controllo che solo gli utenti autenticati possano accedere alle parti del sito
+        riservate agli iscritti è stata centralizzata in un solo punto mediante <em>servlet filter</em>.</p>
+        
+        <p>Come da specifiche di progetto, il database degli utenti 
+            è gestito utilizzando <em>DOM parsing</em>. La tecnica XML DOM è inoltre utilizzata 
+            nella costruzione e decodifica dei messaggi XML (sia lato client sia lato server).
+            Per esercizio, si è inoltre implementato il database delle carte utilizzando 
+            <em>Java Architecture for XML Binding (JAXB)</em>.</p>
+
+        <div class="explain">
+            <p>E' stato quindi possibile valutare entrambe le tecniche ed apprezzare 
+                l'approccio dichiarativo di JAXB e la gestione del mapping 
+                automatico da oggetti Java ad XML e viceversa.</p>
+        </div>        
+        
+        <h3>Computazione lato client</h3>
+        
+        <p>Il gioco è implementato mediante una <em>RIA JavaScript</em> che invia e riceve messaggi XML
+         attraverso chiamate asincrone AJAX.</p>
+        
+        <h4>View Model</h4>
+        
+        <p>Per prima cosa, viene istanziato il <em>View Model</em>, cioè il modello della vista
+         di gioco, che deve fornire:</p>
+        
+        <ul>
+            <li>Informazioni sullo stato della partita (ad es., di chi è il turno, la fase corrente del
+                gioco, ecc.)</li>
+            <li>Informazioni sui giocatori e i rispettivi punteggi</li>
+            <li>Informazioni di ausilio al giocatore (ad es., il suggerimento sulla prossima
+                azione da compiere).</li>
+            <li>Informazioni relative agli oggetti di gioco (ad es., il tavolo di gioco, le carte, ecc.)</li>
+        </ul>
+        
+        <p>Il View Model è stato costruito avvalendosi della libreria <em>Knockout JS</em>, che fornisce
+         un supporto per la creazione di proprietà osservabili e per la definizione dei binding
+         di tra quest'ultime e gli elementi grafici dell'interfaccia web (markup e stile).</p>
+        
+        <p>L'utilizzo di questa libreria è importante in quanto è essa che si occupa di
+            <em>mantanere sincronizzati il View Model e la View</em>, 
+            rilevando automaticamente le modifiche
+         alle proprietà osservabili, e notificando/propagando tali cambiamenti agli osservatori
+        di interesse.</p>
+         
+        <p>Infatti, se non si fosse usato Knockout JS, si sarebbe dovuto inserire, nel codice JavaScript
+        che realizza la logica client-side del gioco, del codice finalizzato ad aggiornare 
+        gli elementi della vista con i nuovi dati ricevuti. Quindi il codice sarebbe stato 
+         "mischiato" alla logica di sincronizzazione modello-vista e avrebbe anche incorporato
+         una dipendenza indesiderata verso gli elementi grafici della View.</p>
+        
+        <p>Quindi, Knockout JS ha portato i seguenti vantaggi:</p>
+        
+        <ul>
+            <li>Maggiore <em>separation of concerns</em></li>
+            <li><em>Indipendenza del codice JavaScript dalla View</em> (markup e stile):
+            non è più necessario selezionare esplicitamente (ad es., via jQuery con selettori) 
+            gli elementi della pagina per aggiornare il loro contenuto o le loro proprietà.
+            In questo modo, se mai la View dovesse cambiare, il codice JavaScript <u>non</u> 
+            dovrebbe essere cambiato di conseguenza.</li>
+        </ul>
+        
+        <p>Tra gli svantaggi, piuttosto trascurabili in questo caso, ricordiamo il fatto di dover
+         imparare ad utilizzare una nuova libreria.</p>
+        
+        <p>In questa applicazione, il View Model consiste in:</p>
+        <ul>
+            <li><em>Proprietà osservabili</em>
+            <ul>
+                <li>Identificativo della partita</li>
+                <li>Fase di gioco</li>
+                <li>Nome del giocatore cha ha il turno</li>
+                <li>Nome del giocatore corrente</li>
+                <li>Indizio della carta</li>
+                <li>Nome del vincitore</li>
+                <li>Flag collegamento alla partita</li>
+                <li>Flag conferma proseguimento</li>
+                <li>Carta selezionata</li>
+                <li>Carta votata</li>
+            </ul>
+            </li>
+            <li><em>Array osservabili</em>
+            <ul>
+                <li>Carte del giocatore corrente</li>
+                <li>Carte sul tavolo</li>
+            </ul>
+            </li>
+            <li><em>Proprietà osservabili derivate</em> (computed)
+            <ul>
+                <li>Suggerimento sullo stato del gioco</li>
+                <li>Prossima azione da eseguire</li>
+                <li>Testo del bottone che attiva la prossima azione</li>
+                <li>Flag per fornire l'indizio</li>
+                <li>Flag per selezionare una carta</li>
+                <li>Flag per votare una carta</li>
+            </ul>
+            </li>
+            <li><em>Azioni</em> (handler)
+            <ul>
+                <li>Collegamento alla partita (<tt>join</tt>)</li>
+                <li>Fornitura indizio (<tt>setphrase</tt>)</li>
+                <li>Proseguimento partita (<tt>proceed</tt>)</li>
+            </ul>
+            </li>
+        </ul>
+        
+        <p>Molte di queste informazioni sono facilmente ritrovabili, senza guardare al codice,
+         nel seguente screenshot.</p>
+        
+        <img src="Screenshot_game_frontend.png" alt="Screenshot game frontend" />
+        
+        <h4>Azioni di gioco</h4>
+        
+        <p>L'entry point per le azioni di gioco è la funzione <tt>performAction()</tt> che accetta
+            il nome dell'azione da eseguire e i dati da allegare alla richiesta, ed effettua
+            una chiamata AJAX al servizio web che opera via XML-over-HTTP.</p>
+        <p>In questa funzione, ogni azione che può essere eseguita è abilitata sulla base
+            dell'ultimo stato noto della partita (la distribuzione implica l'impossibilità
+            di una consistenza immediata). Questi controlli sono comunque replicati anche lato server.</p>
+        <p>Le azioni che possono essere effettuate da un giocatore sono:</p>
+        
+        <ul>
+            <li><tt>join</tt>: collegamento alla partita</li>
+            <li><tt>setPhrase</tt>: fornitura dell'indizio</li>
+            <li><tt>selectCard</tt>: selezione di una carta</li>
+            <li><tt>voteCard</tt>: votazione di una carta</li>
+            <li><tt>proceed</tt>: proseguimento partita</li>
+            <li><tt>pop</tt>: richiesta aggiornamenti sullo stato della partita</li>
+        </ul>
+        
+        <p>Ognuna di queste azioni viene rappresentata da un opportuno documento XML,
+            la cui costruzione è incapsulata in apposite funzioni JavaScript.
+            Questi messaggi XML, una volta costruiti, sono forniti 
+            come dati alle richieste POST effettuate al servizio web di gioco,
+            il quale risponderà con ulteriori messaggi XML sulla base dell'esito delle azioni.</p>
+        
+        
+        <h4>Ricezione aggiornamenti e sincronizzazione stato di gioco</h4>
+        
+        <p>Quando le richieste AJAX vengono completate con successo, 
+        delle callback sono chiamate per gestire l'evento. In queste callback,
+        la reazione consiste nell'aggiornare il front-end sulla base dell'
+        informazione ricevuta e dell'esito dell'azione eseguita.</p>
+        
+        <p>La funzione che si occupa di aggiornare lo stato del gioco è <tt>syncWithGameInfo()</tt>.
+        Essa popola e imposta le proprietà del View Model (vedi sopra) in base alle informazioni
+        ottenute. Per fare ciò, i documenti XML sono parsati con tecnica DOM XML.</p>
+        
+        
+        <h4>Ulteriori informazioni</h4>
+        
+        <p>Un aspetto molto importante nello sviluppo della parte client-side è la scrittura
+            di codice <em>cross-browser</em>, cioè codice che funziona allo stesso modo
+            (o che degrada dolcemente)
+            indipendentemente dal browser utilizzato dall'utente.</p>
+        
+        <p>In quest'ottica, e anche per ragioni di <em>produttività</em>, si è ritenuto 
+            opportuno utilizzare la popolare libreria <em>JQuery</em>, che fornisce uno strato
+            intermedio e funzioni di utilità che schermano lo sviluppatore da
+            problematiche (storicamente) ricorrenti nello sviluppo in JavaScript.</p>
+        
+        
+        <h3>Computazione lato server</h3>
+        
+        <p>Il codice server-side è così organizzato in packages</p>
+        
+        <ul>
+            <li><tt>asw1022.controllers</tt>: contiene i controller (servlet) ed è 
+            ulteriormente organizzato in sotto-packages sulla base delle funzionalità 
+            del sito che vengono coperte</li>
+            <li><tt>asw1022.db</tt>: contiene le classi che rappresentano i database XML</li>
+            <li><tt>asw1022.repositories</tt>: contiene le classi che implementano il pattern Repository</li>
+            <li><tt>asw1022.managers</tt>: contiene le classi che incapsulano la logica di query 
+                complesse sui dati</li>
+            <li><tt>asw1022.model</tt>: contiene le classi di modello; nel sottopackage <tt>dixit</tt>
+         si trovano le classi di modello relative al gioco</li>
+            <li><tt>asw1022.filters</tt>: contiene i filtri servlet e i listener del ciclo di vita
+        dell'application</li>
+        </ul>        
+        
+        <h4>Servlets (controllers)</h4>
+        
+        <p>Come già detto precedentemente, l'applicazione web ha un'architettura MVC.
+        Le servlet Java fungono da controller. Esse vengono invocate quando la richiesta HTTP
+         originata dall'utente fa match con il corrispondente URL pattern. 
+         In quanto controller, le servlet recuperano i dati dal modello e restituiscono
+         la vista appropriata alla richiesta: questo, in particolare, è realizzato
+         mediante <em>forwarding a pagina JSP</em>.</p>
+        
+        <p>Le pagine JSP sono salvate sotto <tt>/WEB-INF/jsp/*.jsp</tt> cosicché non sia 
+            possibile accedervi direttamente. In questo modo occorre sempre passare 
+            dai controller.</p>
+
+        <p>Le servlet sono definite sotto <tt>asw1022.controllers</tt> e organizzate in 
+            sotto-package sulla base della macro-funzionalità che contribuiscono a creare:</p>
+
+        <ul>
+            <li><tt>asw1022.controllers.home</tt>
+            <ul>
+                <li><a href="javadoc_webapp/asw1022/controllers/home/HomeServlet.html">HomeServlet</a>: 
+                    controller per l'homepage.</li>
+                <li><a href="javadoc_webapp/asw1022/controllers/home/AboutServlet.html">AboutServlet</a>: 
+                    controller per la pagina informativa sul gioco Dixit.</li>
+            </ul></li>
+        <li><tt>asw1022.controllers.user</tt>
+        <ul>
+            <li><a href="javadoc_webapp/asw1022/controllers/user/LoginServlet.html">LoginServlet</a>: 
+                controller per la funzionalità di login.</li>
+            <li><a href="javadoc_webapp/asw1022/controllers/user/LogoutServlet.html">LogoutServlet</a>: 
+                controller per la funzionalità di logout.</li>
+            <li><a href="javadoc_webapp/asw1022/controllers/user/RegisterServlet.html">RegisterServlet</a>: 
+                controller per la funzionalità di registrazione.</li>
+        </ul></li>    
+        <li><tt>asw1022.controllers.game</tt>
+        <ul>
+            <li><a href="javadoc_webapp/asw1022/controllers/game/PlayServlet.html">PlayServlet</a>: 
+                controller per la funzionalità di selezione partita e gioco.</li>
+            <li><a href="javadoc_webapp/asw1022/controllers/game/NewMatchServlet.html">NewMatchServlet</a>: 
+                controller per la funzionalità di creazione di nuove partite.</li>
+        </ul></li>
+        </ul>
+
+        <h5></h5>
+
+        <h4>Pagine JSP e fragment</h4>
+
+        <p>Le seguenti pagine JSP sono state definite:</p>
+        <ul>
+            <li>Macro funzionalità: generale
+                <ul>
+                    <li><tt>about.jsp</tt>: pagina informativa sul gioco Dixit.</li>
+                    <li><tt>error.jsp</tt>: pagina di comunicazione errori.</li>
+                    <li><tt>home.jsp</tt>: home page.</li>                    
+                </ul></li>
+            <li>Macro funzionalità: gestione utenti <ul>
+                <li><tt>login.jsp</tt>: pagina di login con modulo e comunicazione esito.</li>
+                <li><tt>register.jsp</tt>: pagina di registrazione con modulo e comunicazione esito.</li>                    
+                </ul></li>
+            <li>Macro funzionalità: gioco <ul>
+                <li><tt>new_match.jsp</tt>: pagina per la creazione di nuove partite.</li>
+                <li><tt>select_match.jsp</tt>: pagina per la selezione di partite esistenti.</li>
+                <li><tt>play.jsp</tt>: pagina di gioco di una partita a Dixit.</li> 
+                </ul></li>
+        </ul>
+        
+        <p>Alcuni <em>JSP fragment</em> sono stati creati per essere riusati in diverse pagine JSP.
+         Qui l'esigenza era di limitare la duplicazione del codice, centralizzando in file 
+            separati le parti comuni a tutte le pagine del sito. 
+        In particolare, questo meccanismo è stato utilizzato per realizzare un
+            <em>layout uniforme</em>.</p>
+        <p>I frammenti JSP sono i seguenti (definiti in <tt>/WEB-INF/jspf/*.jspf</tt>): </p>
+        
+        <ul>
+            <li><tt>head.jspf</tt>: contiene le inclusioni comuni degli stili CSS e dei file JavaScript.</li>
+        <li><em><tt>prologue.jsp</tt></em>: contiene la parte "alta" del sito che wrappa il contenuto;
+            in particolare, questo fragment include il markup per la
+            <i>top bar</i>, l'<i>header</i>, e il <i>menu</i>. </li>
+        <li><em><tt>epilogue.jsp</tt></em>: contiene la parte "bassa" del sito che wrappa il contenuto;
+            in particolare, chiude il contenitore del blocco specifico della pagina, e
+            include il <i>footer</i>.</li>
+        <li><tt>msg.jsp</tt>: contiene un code snippet per la comunicazione di messaggi (ad es., 
+            a seguito di invio di form) con eventualmente la specifica di una pagina di redirect.</li>
+        <li><tt>form_errors.jspf</tt>: contiene un code snippet per la comunicazione degli 
+        errori di validazione server-side per le form.</li>
+        </ul>
+
+        <p>Con tale organizzazione, le pagine del sito possono essere definite nel modo seguente:</p>
+        
+        <pre>&lt;%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+&lt;!DOCTYPE html>
+&lt;html>
+    &lt;head>
+        
+        &lt;title>Titolo pagina&lt;/title>
+
+        &lt;%@ include file="/WEB-INF/jspf/head.jspf" %>
+
+        &lt;!-- QUI, EVENTUALMENTE, ULTERIORI SCRIPT/CSS -->
+        
+    &lt;/head>
+    &lt;body>
+
+        &lt;%@ include file="/WEB-INF/jspf/prologue.jspf" %>
+
+        &lt;!-- ***************************** -->
+        &lt;!-- QUI IL CONTENUTO DELLA PAGINA -->
+        &lt;!-- ***************************** -->
+
+        &lt;%@ include file="/WEB-INF/jspf/epilogue.jspf" %>
+
+    &lt;/body>
+    
+&lt;/html></pre>
+        
+        <h5>Validazione server-side dei dati</h5>
+        
+        <p>Quando una form è inviata (ad es., per registrazione utente o login), oltre alla 
+            validazione client-side implementata in JavaScript, viene effettuata anche una 
+            validazione server-side in quanto la prima può essere facilmente scavalcata
+            e rappresenta quindi una misura  insufficiente per garantire la 
+            correttezza/integrità dei dati.</p>
+        
+        <p>Oltre all'enforcement dei vincoli di validazione dei dati inseriti (ad es., 
+        il match delle due password inserite in fase di registrazione) e delle informazioni
+        da registrare sul server (ad es., dati utente o dati sulle partite), si vuole 
+        fornire all'utente un feedback in merito agli errori di compilazione delle form.</p>
+        
+        <p>A questo scopo, le servlet sono state tipicamente strutturate in modo da prendere 
+            decisioni diverse in merito al forwarding delle pagine JSP sulla base del
+            risultato delle azioni richieste. Gli errori sono passati alla pagina JSP che 
+            contiene la form come lista di oggetti 
+            <a href="javadoc_webapp/asw1022/utils/ValidationError.html">ValidationError</a>
+            allegata alla richiesta (come attributo). Questi oggetti 
+            i quali incapsulano un messaggio di errore ed eventualmente il campo di input
+            a cui sono associati.</p>
+        
+        <p>A questo punto, torna utile il fragment <tt>form_errors.jspf</tt>, 
+            che riporta gli errori come lista HTML e, tramite codice JavaScript
+            generato dinamicamente,
+            cambia lo stile degli input field compilati erroneamente.</p>
+        
+        <p>Un esempio del risultato è fornito dal seguente screenshot:</p>
+        
+        <img src="validationErrors.png" />
+
+<!--
+        <p>Una nota: nella generazione del codice JavaScript, si è utilizzato il metodo di utilità
+        <tt>StringEscapeUtils.escapeEcmaScript()</tt> fornito dalla libreria
+        <em>Apache Commons Lang</em> (3.3.2) per effettuare l'escape dei nomi
+        dei campi della form che andranno a costituire gli elementi di un array JavaScript.
+        In questo caso è stata una precauzione forse esagerata, ma si è voluto mostrare
+        una pratica importante per evitare attacchi XSS.</p>
+-->
+
+        <h4>Web service</h4>
+        
+        <p>La servlet <tt>asw1022.services.Dixit</tt> è il <em>servizio web XML-over-HTTP</em> che 
+        implementa la logica di gioco. Si tratta di una <em>servlet asincrona</em>
+        (<tt>asyncSupported=true</tt>) in quanto si vuole supportare la tecnica <em>Comet</em>
+        del <em>long-polling</em> (<em>BOSH</em>): quando l'utente fa polling, 
+        se non ci sono dati da restituire al momento, la servlet "sospende" la richiesta corrente
+        rendendola asincrona.</p>
+
+        <p>Per ogni utente, la servlet tiene traccia del "contesto", rappresentato da un'istanza
+            della classe <a href="javadoc_webapp/asw1022/services/UserAsyncContext.html">UserAsyncContext</a>,
+            che incapsula l'oggetto <tt>AsyncContext</tt> e una coda di documenti DOM XML.</p>
+
+        <p>Il servizio fornisce le seguenti operazioni:</p>
+        <ul>
+            <li><em>JoinMatch</em>: collegamento di un giocatore alla partita indicata.
+                Il primo collegamento registra il giocatore alla partita.
+                L'operazione ha successo solo se il giocatore è registrato alla partita
+                    o, in caso contrario, se ci sono rimasti posti liberi.</li>
+            <li><em>GivePhrase</em>: il giocatore fornisce l'indizio (una frase)
+                che deve guidare gli altri utenti alla selezione di una carta e successivamente
+                al voto della carta secondo loro appartenente al giocatore di turno.
+                L'operazione ha successo se ci troviamo nella corrispondente fase di gioco 
+                    e se il giocatore che ha invocato l'operazione è lo stesso che detiene il turno.</li>
+            <li><em>SelectCard</em>: il giocatore indica l'identificativo della carta 
+                da lui selezionata. L'operazione ha successo se ci troviamo nella corrispondente
+                fase di gioco, se l'utente non ha già selezionato una carta, e se la carta 
+                appartiene al giocatore che ha invocato l'operazione.</li>
+            <li><em>VoteCard</em>: il giocatore indica l'identificativo della carta
+                da lui votata. L'operazione ha successo se ci troviamo nella corrispondente 
+                fase di gioco, se l'utente non ha già votato una carta, e se la carta
+                votata è una carta sul tavolo diversa da quella proposta dal giocatore
+                che ha invocato l'operazione.</li>
+            <li><em>Proceed</em>: il giocatore indica che ha visionato i risultati
+                ed è pronto a continuare il gioco, cioè a passare al turno successivo.
+                L'operazione ha successo se ci troviamo nella corrispondente fase di gioco.</li>
+            <li><em>GetUpdate</em>: il giocatore fa polling per ricevere informazioni
+                sullo stato della partita. Se c'è qualche informazione/notifica da restituire,
+                essa è data in risposta; altrimenti, la richiesta viene sospesa in attesa
+                di informazioni.</li>
+        </ul>        
+        
+        <h3>Informazioni memorizzate sul server</h3>
+        
+        <p>Le seguenti informazioni sono memorizzate sul server come database XML.</p>
+        
+        <ul>
+            <li><em>Utenti</em>: gli utenti iscritti al sito (username, password) 
+                sono memorizzati nel file <tt>/WEB-INF/xml/userDB.xml</tt>.</li>
+            <li><em>Carte di gioco</em>: le carte del gioco Dixit (ID, titolo, URL)
+                sono memorizzate nel file <tt>/WEB-INF/xml/cardDB.xml</tt>.</li>
+        </ul>
+        
+        <p>Nota: per ragioni di sicurezza la password non è memorizzata in chiaro, 
+            ma il suo hash SHA-256. In questo modo, nemmeno gli amministratori del sito
+            possono accedere alle password degli utenti.</p>
+        
+        <p>I file XML Schema che descrivono la struttura dei suddetti file XML sono i seguenti
+            (sotto <tt>/xml-types/db/</tt>):</p>
+        
+        <ul>
+            <li><a href="xml-types/db/user_db.xsd">user_db.xsd</a></li>
+            <li><a href="xml-types/db/card_db.xsd">card_db.xsd</a></li>
+        </ul>
+        
+        <p>Le partite, invece, sono memorizzate in memoria condivisa tra le servlet
+            come attributo del <tt>ServletContext</tt>. Le partite andranno quindi perse
+            ogniqualvolta l'applicazione web o il server web vengono riavviati.</p>
+        
+        <p>Eventualmente, è possibile prevedere la persistenza delle partite non terminate quando 
+            viene intercettato l'evento <tt>contextDestroyed</tt>, e successivamente 
+            ricaricare le partite in <tt>contextInitialized</tt>. C'è già un ascoltatore 
+            per questi eventi dell'application cycle, <tt>asw1022.filters.DixitContextListener</tt>.</p>
+
+        <h3>Informazioni scambiate in rete</h3>
+        
+        <p>In rete vengono scambiati, tra la RIA JavaScript e il web service XML-over-HTTP,
+            dei documenti XML che rappresentano le azioni utente, gli esiti di tali azioni, 
+            e rappresentazioni XML dello stato delle partite.</p>
+        
+        <p>Le azioni utente (richieste) sono documenti XML con elemento radice 
+            che ha il nome dell'azione (ad es. <tt>&lt;join&gt;</tt>, <tt>&lt;setPhrase&gt;</tt> ecc.),
+            con un elemento figlio per ogni parametro. In particolare, è sempre presente 
+            un figlio <tt>&lt;user&gt;</tt> con il nome dell'utente che effettua l'azione
+            (viene comunque controllato lato server che corrisponda all'utente in sessione)
+            e un figlio <tt>&lt;match&gt;</tt> con il nome della partita che si sta giocando.
+            Per quanto riguarda le azioni specifiche, <tt>setPhrase</tt> implicherà un 
+            figlio <tt>&lt;phrase&gt;</tt> con il testo dell'indizio, mentre <tt>selectCard</tt> e <tt>voteCard</tt> 
+            includeranno un figlio <tt>&lt;card&gt;</tt> con il nome della carta in questione 
+            nel testo dell'elemento.</p>
+        
+        <p>Per quanto riguarda le risposte, sono di quattro tipi:</p>
+        
+        <ol>
+            <li><tt>&lt;ok&gt;</tt>: con corpo vuoto, con un'eccezione quando è in risposta a una
+            richiesta di tipo <tt>join</tt> e la partita è già cominciata, nel qual caso si
+            ritorna anche lo stato della partita.</li>
+            <li><tt>&lt;error&gt;</tt>: contiene il testo di un messaggio d'errore come contenuto.</li>
+            <li><tt>&lt;timeout&gt;</tt>: corpo vuoto; serve per indicare che la connessione è "viva".</li>
+            <li><tt>&lt;update&gt;</tt>: contiene lo stato della partita, 
+                espresso da un elemento di tipo <tt>GameInfo</tt>.</li>
+        </ol>
+        
+        <p>Di seguito sono linkati i file XSD per i documenti XML non banali scambiati in rete:</p>
+        
+        <ul>
+            <li><em>Requests</em><ul>
+                    <li><a href="xml-types/requests/join_request.xsd">join_request.xsd</a></li>
+                    <li><a href="xml-types/requests/pop_request.xsd">pop_request.xsd</a></li>
+                    <li><a href="xml-types/requests/proceed_request.xsd">proceed_request.xsd</a></li>
+                    <li><a href="xml-types/requests/selectCard_request.xsd">selectCard_request.xsd</a></li>
+                    <li><a href="xml-types/requests/setPhrase_request.xsd">setPhrase_request.xsd</a></li>
+                    <li><a href="xml-types/requests/voteCard_request.xsd">voteCard_request.xsd</a></li>                    
+            </ul></li>
+            <li><em>Responses</em><ul>
+                    <li><a href="xml-types/responses/ok_response.xsd">ok_response.xsd</a></li>
+                    <li><a href="xml-types/responses/update_response.xsd">update_response.xsd</a></li>
+            </ul></li>
+        </ul>
+        
+        <p>NOTA: per riusare <tt>GameInfoType</tt> 
+        (<a href="xml-types/responses/GameInfo.xsd">GameInfo.xsd</a>) si è fatto uso dell'elemento 
+        XML Schema <tt>include</tt> nei XSD delle risposte <tt>ok</tt> e <tt>update</tt>.</p>
+        
+
+        <h3>Libreria di utilità</h3>
+
+        <p>Lato server si fa uso della libreria di utilità <a href="javadoc_lib1/index.html">Lib1</a>.</p>
+        
+        <p>Questa libreria fornisce complessivamente le seguenti funzionalità, organizzate 
+            in package differenti:</p>
+        
+        <ul>
+            <li><a href="javadoc_lib1/asw1022/util/package-summary.html">asw1022.util</a>: 
+                contiene una classe <tt>Utils</tt> con metodi statici di utilità generale.</li>
+            <li><a href="javadoc_lib1/asw1022/util/functional/package-summary.html">asw1022.util.functional</a>:
+                contiene un'interfaccia <tt>Predicate&lt;T&gt;</tt>.</li>
+            <li><a href="javadoc_lib1/asw1022/util/security/package-summary.html">asw1022.util.security</a>:
+                contiene una classe <tt>SecurityUtils</tt> che fornisce un metodo per effettuare 
+                l'hashing SHA-256 su una stringa.</li>
+            <li><a href="javadoc_lib1/asw1022/util/xml/package-summary.html">asw1022.util.xml</a>:
+                contiene una classe <tt>ManageXML</tt> e una classe <tt>DOMUtils</tt>.
+            La prima fornisce un supporto di 
+                base per manipolazioni XML DOM, mentre la seconda fornisce metodi shortcut
+                per operazioni di accesso al DOM.</li>              
+        </ul>
+        
+        <h2>Ulteriori informazioni</h2>
+        
+        <ul>
+            <li>Il sito web è stato testato con i seguenti browser: <em>Google Chrome 35.0</em>, 
+                <em>Chromium 35.0</em> for Debian 7.5, <em>Mozilla Iceweasel 24.5</em>,
+                <em>Internet Explorer 11</em>, and <em>Safari</em> su Ipad.</li>
+            <li>Il markup del sito web è stato validato con il <em>HTML5 Conformance Checker</em> (experimental
+             feature) del W3C, mentre i fogli di stile sono stati validati mediante il 
+             <em>W3C CSS Validation Service</em></li>
+        </ul>
+        
+        <h2>Riferimenti</h2>
+        
+        <ul>
+            <li><em>JQuery</em>: <a href="http://api.jquery.com/">JQuery API documentation</a></li>
+            <li><em>Knockout</em>: <a href="http://knockoutjs.com/documentation/introduction.html">Knockout JS documentation</a></li>
+            <li><em>HTML/CSS Validation</em>: <a href="http://validator.w3.org/">Markup Validation Checker</a>,
+                <a href="http://jigsaw.w3.org/css-validator/validator">CSS Validation Service</a></li>
+            <li><em>XSD/XML Validation</em>: <a href="http://www.utilities-online.info/xsdvalidation/">Online XSD Validation</a></li>
+        </ul>
+        
+    </body>
+</html>

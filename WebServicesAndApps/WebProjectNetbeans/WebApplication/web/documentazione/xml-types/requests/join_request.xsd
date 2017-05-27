@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="join" type="joinType"/>
+  <xs:complexType name="joinType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="user"/>
+      <xs:element type="xs:string" name="match"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

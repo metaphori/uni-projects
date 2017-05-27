@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>userDB</param-name>
+        <param-value>WEB-INF/xml/userDB.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>matchDB</param-name>
+        <param-value>WEB-INF/xml/matchDB.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>cardDB</param-name>
+        <param-value>WEB-INF/xml/cardDB.xml</param-value>
+    </context-param>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>asw1022.filters.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/Dixit</url-pattern>
+        <url-pattern>/NewMatch</url-pattern>
+        <url-pattern>/Play</url-pattern>
+    </filter-mapping>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>asw1022.filters.DixitContextListener</listener-class>
+    </listener>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

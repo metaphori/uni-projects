@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://isi-tomcat.csr.unibo.it:8080/~roberto.casadei12/xml-types/">
+    <xs:include schemaLocation="http://isi-tomcat.csr.unibo.it:8080/~roberto.casadei12/xml-types/responses/GameInfo.xsd" />
+       
+    <xs:element name="ok">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="GameInfo" type="GameInfoType" minOccurs="0" /> <!-- optional -->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
