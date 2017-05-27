@@ -1,0 +1,14 @@
+push init
+sra
+b f0
+init:
+lrv
+print
+print
+halt
+
+f0:
+push 10
+srv
+lra
+js

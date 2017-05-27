@@ -1,0 +1,23 @@
+@prefix mpmo: <http://robertocasadei.it/my-project-management-ontology#>.
+@prefix eg: <http://www.example.it/myPMeffort#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dbpedia: <http://dbpedia.org/ontology/>.
+
+########## Classes
+mpmo:ProjectManagementModel a rdfs:Class.
+mpmo:Project a rdfs:Class;
+	rdfs:comment "A project management effort";
+	rdfs:label "Project".
+mpmo:Organization a rdfs:Class.	
+
+########## Properties 
+mpmo:governsExecution a rdfs:Property;
+	rdfs:comment "It states that the given project management model (subject) is applied to the given project (object)";
+	rdfs:domain mpmo:ProjectManagementModel;
+	rdfs:range mpmo:Project.
+
+######### Instances 
+<http://www.example.it/myPMeffort#PMModelForThisAssignment> mpmo:governsExecution <http://www.example.it/myPMeffort#ThisAssignment>;
+	a mpmo:ProjectManagementModel.
+<http://www.example.it/myPMeffort#ThisAssignment> a mpmo:Project.

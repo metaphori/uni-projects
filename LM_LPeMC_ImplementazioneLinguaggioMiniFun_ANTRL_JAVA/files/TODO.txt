@@ -1,0 +1,44 @@
+********************************************
+*** Problematiche e possibile estensioni ***
+********************************************
+
+1) Se da una funzione F1 si ritorna il riferimento a una funzione F2 definita all'interno di F1 e
+ 	che fa uso di argomenti passati a F1, per come sono implementate le chiusure in questo momento
+ 	si ha che un'invocazione a F2 può funzionare solo all'interno di F1;
+ 	se si esce da F1 e si invoca F2 tramite il riferimento ritornato, l'accesso ai parametri di F1
+ 	non funziona poiché gli argomenti sono stati pop()ati dallo stack al ritorno da F1.
+ 	
+Esempio:
+let
+	fun multiplyBy:(int)->int (factor:int){
+		let
+			var z:int = print(factor);
+			fun m:int (x:int){
+				let
+					var f:int = print(factor);
+					var o:int = x;
+				in
+					o*print(f);
+			};
+		in
+			m;
+	};
+	var multiplyFor7:(int)->int = multiplyBy(7);
+	
+in
+	print( multiplyFor7(2) ); 	
+ 	
+ Possibili soluzioni:
+ 	A) Copiare gli argomenti di F1 come variabili locali a F2.
+ 		Ad esempio passando variabili locali e argomenti al codeGen() del proprio body, e questo 
+ 		ricorsivamente ai propri nodi figli.
+
+	B) Estendere l'implementazione delle chiusure ritornando un indirizzo (magari sullo heap)
+		dove sono memorizzati i valori delle variabili libere usate.
+				
+		
+2) Partial-function application (currying)
+
+	Si consente la chiamata a funzione con meno parametri del necessario.
+	 Si esegue il corpo solo quando tutti i parametri sono stati passati.
+	Ad ogni applicazione parziale si ritorna un riferimento per completare l'applicazione.

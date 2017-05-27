@@ -1,0 +1,231 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+	d2rq:jdbcDSN "jdbc:mysql://localhost/semantic_web";
+	d2rq:username "root";
+	d2rq:password "password";
+	jdbc:autoReconnect "true";
+	jdbc:zeroDateTimeBehavior "convertToNull";
+	.
+
+# Table deliverables
+map:deliverables a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "deliverables/@@deliverables.id@@";
+	d2rq:class vocab:deliverables;
+	d2rq:classDefinitionLabel "deliverables";
+	.
+map:deliverables__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:deliverables;
+	d2rq:property rdfs:label;
+	d2rq:pattern "deliverables #@@deliverables.id@@";
+	.
+map:deliverables_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:deliverables;
+	d2rq:property vocab:deliverables_id;
+	d2rq:propertyDefinitionLabel "deliverables id";
+	d2rq:column "deliverables.id";
+	d2rq:datatype xsd:integer;
+	.
+map:deliverables_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:deliverables;
+	d2rq:property vocab:deliverables_title;
+	d2rq:propertyDefinitionLabel "deliverables title";
+	d2rq:column "deliverables.title";
+	.
+map:deliverables_released_on a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:deliverables;
+	d2rq:property vocab:deliverables_released_on;
+	d2rq:propertyDefinitionLabel "deliverables released_on";
+	d2rq:column "deliverables.released_on";
+	d2rq:datatype xsd:date;
+	.
+map:deliverables_project_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:deliverables;
+	d2rq:property vocab:deliverables_project_id;
+	d2rq:refersToClassMap map:projects;
+	d2rq:join "deliverables.project_id => projects.id";
+	.
+
+# Table memberships
+map:memberships a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "memberships/@@memberships.person_id@@/@@memberships.project_id@@/@@memberships.role_id@@";
+	d2rq:class vocab:memberships;
+	d2rq:classDefinitionLabel "memberships";
+	.
+map:memberships__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:memberships;
+	d2rq:property rdfs:label;
+	d2rq:pattern "memberships #@@memberships.person_id@@/@@memberships.project_id@@/@@memberships.role_id@@";
+	.
+map:memberships_from_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:memberships;
+	d2rq:property vocab:memberships_from_date;
+	d2rq:propertyDefinitionLabel "memberships from_date";
+	d2rq:column "memberships.from_date";
+	d2rq:datatype xsd:date;
+	.
+map:memberships_to_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:memberships;
+	d2rq:property vocab:memberships_to_date;
+	d2rq:propertyDefinitionLabel "memberships to_date";
+	d2rq:column "memberships.to_date";
+	d2rq:datatype xsd:date;
+	.
+map:memberships_project_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:memberships;
+	d2rq:property vocab:memberships_project_id;
+	d2rq:refersToClassMap map:projects;
+	d2rq:join "memberships.project_id => projects.id";
+	.
+map:memberships_role_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:memberships;
+	d2rq:property vocab:memberships_role_id;
+	d2rq:refersToClassMap map:roles;
+	d2rq:join "memberships.role_id => roles.id";
+	.
+map:memberships_person_id__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:memberships;
+	d2rq:property vocab:memberships_person_id;
+	d2rq:refersToClassMap map:people;
+	d2rq:join "memberships.person_id => people.id";
+	.
+
+# Table organizations
+map:organizations a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "organizations/@@organizations.id@@";
+	d2rq:class vocab:organizations;
+	d2rq:classDefinitionLabel "organizations";
+	.
+map:organizations__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property rdfs:label;
+	d2rq:pattern "organizations #@@organizations.id@@";
+	.
+map:organizations_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property vocab:organizations_id;
+	d2rq:propertyDefinitionLabel "organizations id";
+	d2rq:column "organizations.id";
+	d2rq:datatype xsd:integer;
+	.
+map:organizations_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property vocab:organizations_title;
+	d2rq:propertyDefinitionLabel "organizations title";
+	d2rq:column "organizations.title";
+	.
+
+# Table people
+map:people a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "people/@@people.id@@";
+	d2rq:class vocab:people;
+	d2rq:classDefinitionLabel "people";
+	.
+map:people__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:people;
+	d2rq:property rdfs:label;
+	d2rq:pattern "people #@@people.id@@";
+	.
+map:people_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:people;
+	d2rq:property vocab:people_id;
+	d2rq:propertyDefinitionLabel "people id";
+	d2rq:column "people.id";
+	d2rq:datatype xsd:integer;
+	.
+map:people_firstname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:people;
+	d2rq:property vocab:people_firstname;
+	d2rq:propertyDefinitionLabel "people firstname";
+	d2rq:column "people.firstname";
+	.
+map:people_lastname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:people;
+	d2rq:property vocab:people_lastname;
+	d2rq:propertyDefinitionLabel "people lastname";
+	d2rq:column "people.lastname";
+	.
+map:people_date_of_birth a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:people;
+	d2rq:property vocab:people_date_of_birth;
+	d2rq:propertyDefinitionLabel "people date_of_birth";
+	d2rq:column "people.date_of_birth";
+	d2rq:datatype xsd:date;
+	.
+map:people_email a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:people;
+	d2rq:property vocab:people_email;
+	d2rq:propertyDefinitionLabel "people email";
+	d2rq:column "people.email";
+	.
+
+# Table projects
+map:projects a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "projects/@@projects.id@@";
+	d2rq:class vocab:projects;
+	d2rq:classDefinitionLabel "projects";
+	.
+map:projects__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:projects;
+	d2rq:property rdfs:label;
+	d2rq:pattern "projects #@@projects.id@@";
+	.
+map:projects_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:projects;
+	d2rq:property vocab:projects_id;
+	d2rq:propertyDefinitionLabel "projects id";
+	d2rq:column "projects.id";
+	d2rq:datatype xsd:integer;
+	.
+map:projects_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:projects;
+	d2rq:property vocab:projects_title;
+	d2rq:propertyDefinitionLabel "projects title";
+	d2rq:column "projects.title";
+	.
+map:projects_id_org__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:projects;
+	d2rq:property vocab:projects_id_org;
+	d2rq:refersToClassMap map:organizations;
+	d2rq:join "projects.id_org => organizations.id";
+	.
+
+# Table roles
+map:roles a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "roles/@@roles.id@@";
+	d2rq:class vocab:roles;
+	d2rq:classDefinitionLabel "roles";
+	.
+map:roles__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:roles;
+	d2rq:property rdfs:label;
+	d2rq:pattern "roles #@@roles.id@@";
+	.
+map:roles_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:roles;
+	d2rq:property vocab:roles_id;
+	d2rq:propertyDefinitionLabel "roles id";
+	d2rq:column "roles.id";
+	d2rq:datatype xsd:integer;
+	.
+map:roles_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:roles;
+	d2rq:property vocab:roles_title;
+	d2rq:propertyDefinitionLabel "roles title";
+	d2rq:column "roles.title";
+	.
+

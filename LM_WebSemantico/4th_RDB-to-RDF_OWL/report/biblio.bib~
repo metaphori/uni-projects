@@ -1,0 +1,140 @@
+@misc{W3UCMapping,
+	Author = {Soren,Auer and Feigenbaum,Lee and Miranker,Daniel and Fogarolli,Angela and Sequeda,Juan},
+	Howpublished = {\url{http://www.w3.org/TR/rdb2rdf-ucr/}},
+	Key = {rdb,mapping,w3c},
+	Title = {Use Cases and Requirements for Mapping Relational Databases to RDF}
+}
+
+@article{owlxslt,
+	author = {Abderrahim Marzouk},
+	title = {Article: Mapping Process of Relational Schema to OWL Ontologies using XSLT},
+	journal = {International Journal of Computer Applications},
+	year = {2013},
+	volume = {71},
+	number = {16},
+	pages = {48-54},
+	month = {June},
+	note = {Published by Foundation of Computer Science, New York, USA}
+}
+
+@article{atbox,
+	author = {Jamal Bakkas and Mohamed Bahaj and Abderrahim Marzouk},
+	title = {Article: Direct Migration Method of RDB to Ontology while Keeping Semantics},
+	journal = {International Journal of Computer Applications},
+	year = {2013},
+	volume = {65},
+	number = {3},
+	pages = {6-10},
+	month = {March},
+	note = {Published by Foundation of Computer Science, New York, USA}
+}
+
+@article{mappingIntoOwlStructure,
+ author = {Gherabi,N. and Addakiri,K.},
+ title = {Mapping relational database into OWL Structure with data semantic preservation},
+ issue_date = {January 2012},
+ journal= {(IJCSIS) International Journal of Computer Science and Information Security Vol. 10, No. 1}
+}
+
+@article{bringingRDBS,
+ author = {Spanos, Dimitrios-Emmanuel and Stavrou, Periklis and Mitrou, Nikolas},
+ title = {Bringing Relational Databases into the Semantic Web: A Survey},
+ journal = {Semant. web},
+ issue_date = {April 2012},
+ volume = {3},
+ number = {2},
+ month = apr,
+ year = {2012},
+ issn = {1570-0844},
+ pages = {169--209},
+ numpages = {41},
+ url = {http://dx.doi.org/10.3233/SW-2011-0055},
+ doi = {10.3233/SW-2011-0055},
+ acmid = {2512664},
+ publisher = {IOS Press},
+ address = {Amsterdam, The Netherlands, The Netherlands},
+ keywords = {OWL, mapping, ontology, relational database, survey},
+}
+
+@misc{w3directmapping,
+	Author = {Arenas,M. and Bertails,A. and Prud'hommeaux,E. and Sequeda,J.},
+	Howpublished = {\url{http://www.w3.org/TR/rdb-direct-mapping/}},
+	Key = {rdb,mapping,w3c},
+	Title = {A Direct Mapping of Relational Data to RDF}
+}
+
+@misc{w3r2rml,
+	Author = {Das,S. and Sundara,S. and Cyganiak,R.},
+	Howpublished = {\url{http://www.w3.org/TR/r2rml/}},
+	Key = {rdb,mapping,w3c,r2rml},
+	Title = {R2RML: RDB to RDF Mapping Language}
+}
+
+
+
+@misc{rdb2rdf_vimeo_euclid,
+	Author = {Sequeda,Juan},
+	Howpublished = {\url{http://vimeo.com/66718408}},
+	Key = {rdb,mapping},
+	Title = {Relational Database to RDF - RDB2RDF}
+}
+
+@misc{w3survey,
+	Author = {Sahoo,S. and Halb,W. and Hellmann,S. and Idehen,K. and Thibodeau Jr,T. and Auer,S. and Sequeda,J. and Ezzat,A.},
+	Howpublished = {\url{http://www.w3.org/2005/Incubator/rdb2rdf/RDB2RDF_SurveyReport.pdf}},
+	Key = {rdb,mapping,survey,w3c},
+	Title = {A Survey of Current Approaches for Mapping of Relational Databases to RDF}
+}
+
+@article{Ravi2009,
+ author = {Ravi, Jayashree and Yu, Zhifeng and Shi, Weisong},
+ title = {A Survey on Dynamic Web Content Generation and Delivery Techniques},
+ journal = {J. Netw. Comput. Appl.},
+ issue_date = {September, 2009},
+ volume = {32},
+ number = {5},
+ month = sep,
+ year = {2009},
+ issn = {1084-8045},
+ pages = {943--960},
+ numpages = {18},
+ url = {http://dx.doi.org/10.1016/j.jnca.2009.03.005},
+ doi = {10.1016/j.jnca.2009.03.005},
+ acmid = {1563170},
+ publisher = {Academic Press Ltd.},
+ address = {London, UK, UK},
+ keywords = {Content distribution, Dynamic Web content, Personalised Web content},
+}
+
+@misc{RDBandSW,
+	Author = {Sequeda, Juan},
+	Howpublished = {\url{http://semanticweb.com/relational-database-and-the-semantic-web_b16083}},
+	Key = {rdb},
+	Title = {Relational Database and the Semantic Web}
+}
+
+
+% book{gof94,
+%	Author = {Gamma, Erich and Helm, Richard and Johnson, Ralph and Vlissides, John M.},
+%	Date-Added = {2008-08-18 15:48:47 +0200},
+%	Date-Modified = {2008-08-18 15:48:47 +0200},
+%	Isbn = {978-0201633610},
+%	Month = {november},
+%	Publisher = {Addison-Wesley Professional},
+%	Series = {Computing Series},
+%	Title = {Design Patterns: Elements of Reusable Object-Oriented Software},
+%	Year = {1994}
+%}
+
+%article{gelernter85toplas,
+%	Author = {Gelernter, David},
+%	Date-Added = {2008-08-18 15:48:47 +0200},
+%	Date-Modified = {2008-10-21 01:03:21 +0200},
+%	Journal = {ACM Transactions on Programming Languages and Systems},
+%	Month = jan,
+%	Number = 1,
+%	Pages = {80--112},
+%	Title = {Generative communication in {L}inda},
+%	Volume = 7,
+%	Year = 1985
+}%

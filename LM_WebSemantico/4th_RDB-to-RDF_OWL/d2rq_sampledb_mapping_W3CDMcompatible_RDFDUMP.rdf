@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:db="http://robertocasadei/SWfinalWork/"
+    xmlns:j.0="http://robertocasadei/SWfinalWork/memberships#"
+    xmlns:map="http://robertocasadei/SWfinalWork/#"
+    xmlns:j.2="http://robertocasadei/SWfinalWork/people#"
+    xmlns:j.1="http://robertocasadei/SWfinalWork/deliverables#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:j.3="http://robertocasadei/SWfinalWork/roles#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:j.4="http://robertocasadei/SWfinalWork/projects#"
+    xmlns:vocab="http://robertocasadei/SWfinalWork/vocab/"
+    xmlns:j.5="http://robertocasadei/SWfinalWork/organizations#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://robertocasadei/SWfinalWork/" > 
+  <rdf:Description rdf:about="deliverables/id=1">
+    <j.1:ref-project_id rdf:resource="projects/id=3"/>
+    <j.1:released_on rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-06-15</j.1:released_on>
+    <j.1:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</j.1:id>
+    <j.1:title>This Database</j.1:title>
+    <j.1:project_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.1:project_id>
+    <rdf:type rdf:resource="deliverables"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="roles/id=2">
+    <j.3:title>Customer</j.3:title>
+    <j.3:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.3:id>
+    <rdf:type rdf:resource="roles"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="projects/id=4">
+    <j.4:ref-id_org rdf:resource="organizations/id=1"/>
+    <j.4:id_org rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</j.4:id_org>
+    <j.4:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</j.4:id>
+    <j.4:title>Teaching at Unibo</j.4:title>
+    <rdf:type rdf:resource="projects"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="roles/id=4">
+    <j.3:title>Factotum</j.3:title>
+    <j.3:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</j.3:id>
+    <rdf:type rdf:resource="roles"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="roles/id=3">
+    <j.3:title>Stakeholder</j.3:title>
+    <j.3:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.3:id>
+    <rdf:type rdf:resource="roles"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="memberships/person_id=2;project_id=3;role_id=1">
+    <j.0:ref-role_id rdf:resource="roles/id=1"/>
+    <j.0:ref-project_id rdf:resource="projects/id=3"/>
+    <j.0:ref-person_id rdf:resource="people/id=2"/>
+    <j.0:role_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</j.0:role_id>
+    <j.0:project_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.0:project_id>
+    <j.0:from_date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-06-01</j.0:from_date>
+    <j.0:to_date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-06-15</j.0:to_date>
+    <j.0:person_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.0:person_id>
+    <rdf:type rdf:resource="memberships"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="projects/id=3">
+    <j.4:ref-id_org rdf:resource="organizations/id=2"/>
+    <j.4:id_org rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.4:id_org>
+    <j.4:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.4:id>
+    <j.4:title>My Assignment</j.4:title>
+    <rdf:type rdf:resource="projects"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="memberships/person_id=3;project_id=4;role_id=2">
+    <j.0:ref-role_id rdf:resource="roles/id=2"/>
+    <j.0:ref-project_id rdf:resource="projects/id=4"/>
+    <j.0:ref-person_id rdf:resource="people/id=3"/>
+    <j.0:role_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.0:role_id>
+    <j.0:project_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</j.0:project_id>
+    <j.0:person_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.0:person_id>
+    <rdf:type rdf:resource="memberships"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="deliverables/id=2">
+    <j.1:ref-project_id rdf:resource="projects/id=3"/>
+    <j.1:released_on rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-06-15</j.1:released_on>
+    <j.1:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.1:id>
+    <j.1:title>This Ontology</j.1:title>
+    <j.1:project_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.1:project_id>
+    <rdf:type rdf:resource="deliverables"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="deliverables/id=3">
+    <j.1:ref-project_id rdf:resource="projects/id=3"/>
+    <j.1:released_on rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-06-15</j.1:released_on>
+    <j.1:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.1:id>
+    <j.1:title>This Report</j.1:title>
+    <j.1:project_id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.1:project_id>
+    <rdf:type rdf:resource="deliverables"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="people/id=2">
+    <j.2:firstname>Roberto</j.2:firstname>
+    <j.2:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.2:id>
+    <j.2:email>roberto.casadei12@studio.unibo.it</j.2:email>
+    <j.2:lastname>Casadei</j.2:lastname>
+    <rdf:type rdf:resource="people"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="organizations/id=2">
+    <j.5:title>MyOrganization</j.5:title>
+    <j.5:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</j.5:id>
+    <rdf:type rdf:resource="organizations"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="people/id=3">
+    <j.2:firstname>Antonella</j.2:firstname>
+    <j.2:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</j.2:id>
+    <j.2:email>antonella.carbonaro@unibo.it</j.2:email>
+    <j.2:lastname>Carbonaro</j.2:lastname>
+    <rdf:type rdf:resource="people"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="roles/id=1">
+    <j.3:title>Project manager</j.3:title>
+    <j.3:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</j.3:id>
+    <rdf:type rdf:resource="roles"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="organizations/id=1">
+    <j.5:title>Unibo</j.5:title>
+    <j.5:id rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</j.5:id>
+    <rdf:type rdf:resource="organizations"/>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,93 @@
+let
+
+	fun length<L>:int (l:list[L]) {
+		if(l==empty) then { 0 }
+		else { 1 + length<L>(rest(l)) }
+	};
+	
+	fun makelist<X>:list[X] (start:X, end:X, succ:(X)->X) {
+		if(start==end) then { [start::empty] }
+		else { [start :: makelist<X>(succ(start), end, succ) ] }
+	};
+
+	fun nextInt:int (i:int) { i+1 };
+	fun nextBool:bool (b:bool) {
+		not(b)
+	};
+	
+	var makeListOfBools:(bool, bool, (bool)->bool)->list[bool] = makelist<bool>;
+
+	fun printlist<P>:list[P] (ppp:list[P]) { if(ppp==empty) then { empty } else { [print(first(ppp)) :: printlist<P>(rest(ppp))] } };
+	fun makelist2<N>:list[N] (start:N, end:N, succ:(N)->N, equal:(N,N)->bool) {
+		if(equal(start,end)) then { [start::empty] }
+		else { [start :: makelist2<N>(succ(start), end, succ, equal) ] }
+	};	
+	fun succLst:list[int](kkk:list[int]){ [ first(kkk)-1 :: kkk ] };
+	fun eqList<E>:bool (l1:list[E], l2:list[E]){
+		if((l1==empty) && (l2==empty)) then { true }
+		else {
+			if((l1==empty) || (l2==empty)) then { false } else {
+				if(not(first(l1)==first(l2))) then { false } else { eqList<E>(rest(l1), rest(l2)) }
+			}
+		}
+	};
+	var lst1:list[int] = makelist<int>(5,9,nextInt);
+	var lst2:list[int] = makelist<int>(0,9,nextInt);
+	
+	fun foreach<F>:int (llll:list[F], do:(F)->F) {
+		if(llll==empty) then { 0 }
+		else { do(first(llll))+print(print(print(9999)))+foreach<F>(rest(llll),do) }
+	};
+	fun printint:int(x:int){ print(x) };
+	
+	var plist:(list[bool])->list[bool] = printlist<bool>;
+	
+	fun filter<T>: list[T] (lst:list[T], pred:(T)->bool){
+		if(lst==empty) then { empty }
+		else{
+			if(pred(first(lst))) then { [first(lst) :: filter<T>(rest(lst), pred) ] }
+			else { filter<T>(rest(lst), pred) }
+		}
+	};
+	
+	fun getParityTest:(int)->bool (which:int){
+		let
+			fun isEven:bool (v:int){ v%2==0 };
+			fun isOdd:bool (v:int){ not(v%2==0) };
+		in
+			if(which==0) then { isEven } else { isOdd };
+	};
+	
+in
+	makelist2<int>;
+
+	/*printlist<int>(
+		filter<int>( makelist<int>(0,15,nextInt) , getParityTest(1))
+	);*/
+	
+	/*print(
+		length<int>([1::[2::empty]]) +
+		length<bool>([true::[false::[false::empty]]]) +
+		length<list[list[int]]>( 
+			| 
+				| |1,2,3|, |5,7| |, 
+				empty,
+				| |0,10,8|, empty, |0|, empty, |6,4|, |9,53,2| | 
+			|
+		)
+	);*/ /* ==> 8 */
+
+	/*foreach<list[int]>( makelist2<list[int]>(lst1,lst2,succLst,eqList<int>),
+			 printlist<int>);*/
+
+	/*printlist<bool>(makeListOfBools(false, true, nextBool));*/
+	/* ===> 0 1 */
+	
+	/* printlist<bool>( makelist<bool>(false, true, nextBool) ); */
+	/* ===> 0 1 */
+	
+  	/* printlist( makelist<int>(0,3,nextInt) ); */
+  	/* ===> 0 1 2 3 */
+  	
+  	/* print(length<list[int]>([ [1::empty] :: [ [2::empty] :: empty ]]) + length<bool>([true::[false::empty]]) ); */
+  	/* ===> 4 */

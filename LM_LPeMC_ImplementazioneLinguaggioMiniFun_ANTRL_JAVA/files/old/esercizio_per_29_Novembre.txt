@@ -1,0 +1,39 @@
+Completare l'implementazione della Virtual Machine
+estendendo il relativo linguaggio con le seguenti
+istruzioni:
+
+
+-> push LABEL (mette l'indirizzo associato alla label in cima allo stack)
+-> sw (mette nella cella indirizzata dal top dello stack, il valore sotto al top)
+-> lw (mette sullo stack il contenuto della cella puntata dal top dello stack)
+-> beq LABEL (come bless ma con controllo di uguaglianza)
+->js (salta all'istruzione indicata dal top dello stack, 
+e memorizza nel registro RA il valore attualmente nell'instruction pointer)
+->lra (mette il contenuto di RA in cima allo stack)
+->sra (mette in RA il top dello stack)
+->lrv (mette il contenuto del registro RV in cima allo stack)
+->srv (mette in RV il top dello stack)
+->lhp (mette il contenuto del registro HP in cima allo stack)
+->shp (mette in HP il top dello stack)
+->lfp (mette il contenuto del registro FP in cima allo stack)
+->sfp (mette in FP il top dello stack)
+->cfp (copia il valore nello stack pointer dentro al registro FP)
+
+
+Si noti che sono previsti i seguenti registri interni:
+-> RA (return address)
+-> RV (return value)
+-> HP (heap pointer)
+-> FP (frame pointer)
+
+
+Come test, provare il file "qs.asm" che dovrebbe stampare:
+7
+6
+4
+3
+2
+1
+
+
+

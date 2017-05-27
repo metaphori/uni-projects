@@ -1,0 +1,53 @@
+@prefix :        <baseuri> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+
+:PMConcept
+      a       owl:Class, skos:Concept .
+
+:Person
+      a       owl:Class, :PMConcept ;
+      rdfs:subClassOf foaf:Person .
+#:firstname
+#      a       owl:DatatypeProperty ;
+#      rdfs:subPropertyOf foaf:firstName .
+
+:Role
+      a       owl:Class, :PMConcept  .
+
+:Organization
+      a       owl:Class, :PMConcept  ;
+      rdfs:subClassOf org:Organization .
+
+:Membership
+      a       owl:Class, :PMConcept ;
+      rdfs:subClassOf org:Membership .
+:within
+      a       owl:ObjectProperty ;
+      rdfs:domain :Membership ;
+      rdfs:range :Project.
+
+:Deliverable
+      a       owl:Class, :PMConcept .
+:released_on
+      a       owl:DatatypeProperty ;
+      rdfs:domain :Deliverable ;
+      rdfs:range xsd:date .
+:outputOf
+      a       owl:ObjectProperty ;
+      rdfs:domain :Deliverable ;
+      rdfs:range :Project .
+
+:Project
+      a       owl:Class, :PMConcept .
+:startedBy
+      a       owl:ObjectProperty ;
+      rdfs:domain :Project ;
+      rdfs:range :Organization .
+

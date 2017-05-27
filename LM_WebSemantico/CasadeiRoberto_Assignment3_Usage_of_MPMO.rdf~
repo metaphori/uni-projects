@@ -1,0 +1,134 @@
+<rdf:RDF xmlns="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#"
+     xml:base="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+
+</rdf:RDF>
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Antonella_Carbonaro -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Antonella_Carbonaro">
+        <rdf:type rdf:resource="&foaf;Person"/>
+    </owl:NamedIndividual>
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyDatetimeDescription -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyDatetimeDescription">
+        <rdf:type rdf:resource="&time;DateTimeDescription"/>
+        <time:month rdf:datatype="&xsd;gMonth">05</time:month>
+        <time:year rdf:datatype="&xsd;gYear">2014
+</time:year>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyEngagementTimeInterval -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyEngagementTimeInterval">
+        <rdf:type rdf:resource="&time;DateTimeInterval"/>
+        <time:hasDateTimeDescription rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyDatetimeDescription"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyInvolvement -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyInvolvement">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Membership"/>
+        <org:memberDuring rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyEngagementTimeInterval"/>
+        <org:organization rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyOwnOrganization"/>
+        <within rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyThirdAssignment"/>
+        <org:role rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Project_manager"/>
+        <org:member rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Roberto_Casadei"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyOwnOrganization -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyOwnOrganization">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Organization"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyStudentMembership -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyStudentMembership">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Membership"/>
+        <org:member rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Roberto_Casadei"/>
+        <org:role rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Student"/>
+        <org:organization rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Unibo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyThirdAssignment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyThirdAssignment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Project"/>
+        <hasActivity rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Deployment"/>
+        <hasActivity rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Development"/>
+        <hasActivity rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Inception"/>
+        <isGovernedBy rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#SimplePMModel"/>
+    </owl:NamedIndividual>
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#ProfInvolvement -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#ProfInvolvement">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Membership"/>
+        <org:member rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Antonella_Carbonaro"/>
+        <org:role rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Customer"/>
+        <within rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#MyThirdAssignment"/>
+        <org:organization rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Unibo"/>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Roberto_Casadei -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Roberto_Casadei">
+        <rdf:type rdf:resource="&foaf;Person"/>
+    </owl:NamedIndividual>
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Student -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Student"/>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#ThisOWLOntology -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#ThisOWLOntology">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Deliverable"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Digital"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#ThisPresentation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#ThisPresentation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Deliverable"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Digital"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Unibo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Unibo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#Organization"/>
+    </owl:NamedIndividual>
+    
+

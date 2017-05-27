@@ -1,0 +1,57 @@
+\begin{thebibliography}{10}
+
+\bibitem{Ravi2009}
+J.~Ravi, Z.~Yu, and W.~Shi, ``A survey on dynamic web content generation and
+  delivery techniques,'' {\em J. Netw. Comput. Appl.}, vol.~32, pp.~943--960,
+  Sept. 2009.
+
+\bibitem{bringingRDBS}
+D.-E. Spanos, P.~Stavrou, and N.~Mitrou, ``Bringing relational databases into
+  the semantic web: A survey,'' {\em Semant. web}, vol.~3, pp.~169--209, Apr.
+  2012.
+
+\bibitem{rdb2rdf_vimeo_euclid}
+J.~Sequeda, ``Relational database to rdf - rdb2rdf.''
+  \url{http://vimeo.com/66718408}.
+
+\bibitem{W3UCMapping}
+A.~Soren, L.~Feigenbaum, D.~Miranker, A.~Fogarolli, and J.~Sequeda, ``Use cases
+  and requirements for mapping relational databases to rdf.''
+  \url{http://www.w3.org/TR/rdb2rdf-ucr/}.
+
+\bibitem{w3survey}
+S.~Sahoo, W.~Halb, S.~Hellmann, K.~Idehen, T.~Thibodeau~Jr, S.~Auer,
+  J.~Sequeda, and A.~Ezzat, ``A survey of current approaches for mapping of
+  relational databases to rdf.''
+  \url{http://www.w3.org/2005/Incubator/rdb2rdf/RDB2RDF_SurveyReport.pdf}.
+
+\bibitem{w3directmapping}
+M.~Arenas, A.~Bertails, E.~Prud'hommeaux, and J.~Sequeda, ``A direct mapping of
+  relational data to rdf.'' \url{http://www.w3.org/TR/rdb-direct-mapping/}.
+
+\bibitem{w3r2rml}
+S.~Das, S.~Sundara, and R.~Cyganiak, ``R2rml: Rdb to rdf mapping language.''
+  \url{http://www.w3.org/TR/r2rml/}.
+
+\bibitem{atbox}
+J.~Bakkas, M.~Bahaj, and A.~Marzouk, ``Article: Direct migration method of rdb
+  to ontology while keeping semantics,'' {\em International Journal of Computer
+  Applications}, vol.~65, pp.~6--10, March 2013.
+\newblock Published by Foundation of Computer Science, New York, USA.
+
+\bibitem{mappingIntoOwlStructure}
+N.~Gherabi and K.~Addakiri, ``Mapping relational database into owl structure
+  with data semantic preservation,'' {\em (IJCSIS) International Journal of
+  Computer Science and Information Security Vol. 10, No. 1}.
+
+\bibitem{owlxslt}
+A.~Marzouk, ``Article: Mapping process of relational schema to owl ontologies
+  using xslt,'' {\em International Journal of Computer Applications}, vol.~71,
+  pp.~48--54, June 2013.
+\newblock Published by Foundation of Computer Science, New York, USA.
+
+\bibitem{RDBandSW}
+J.~Sequeda, ``Relational database and the semantic web.''
+  \url{http://semanticweb.com/relational-database-and-the-semantic-web_b16083}.
+
+\end{thebibliography}

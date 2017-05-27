@@ -1,0 +1,46 @@
+Specifiche progetto:
+
+Eseguire una, due o tre delle seguenti estensioni. Le estensioni sono concepite per essere 
+implementate in cascata (inziare dalle prima, poi facoltativamente continuare con la seconda, 
+e poi facoltativamente con la terza).
+
+- Prima estensione:
+
+Estendere il linguaggio con gli operatori ">=", "<=" (maggiore o uguale e minore o uguale, 
+con medesima priorita' rispetto "=="), "-", "||" (sottrazione e or logico con medesima 
+priorita' rispetto "+"), "/", "&&" (divisione su interi e and logico, con medesima priorita' 
+rispetto "*") e "not" (negazione, con massima priorita', con sintassi "not(exp)"). 
+Aggiungere inoltre la possibilita' di dichiarare all'interno delle funzioni variabili 
+e funzioni locali. Completare per tale linguaggio il type-checking e la generazione di codice. 
+Il tipo delle funzioni puo' essere scritto, ad esempio, in questo modo "(int,int)->bool"
+ per una funzione che dati due interi restituisce un booleano.
+
+- Seconda estensione:
+
+Rendere il linguaggio higher-order, cioe' permettere di passare una funzione come parametro. 
+Ad esempio permettere la dichiarazione di funzioni del tipo:
+fun applica:int (x:int, y:int, f:(int,int)->int) {f(x,y)}
+che possono essere invocate in questo modo:
+applica(10,5,somma)
+dove somma e' una funziona. 
+Il problema che si incontra e' il seguente: il codice della chiamata di f, 
+che deve predisporre l'activation record, non puo' sapere come impostare l'access link. 
+La soluzione standard prevede l'uso di "chiusure". 
+Una chiusura e' una coppia <code,declFP> dove "code" e' l'indirizzo del codice di una funzione, 
+e "declFP" e' il contenuto del frame pointer al momento della dichiarazione della funzione. 
+Quando si passa una funzione come parametro, e' sufficiente passarne la chiusura. 
+Il chiamante riceve quindi a run-time il valore da usare per impostare l'access link.
+
+- Terza estensione:
+
+Prevedere un sistema di tipi parametrico. Ad esempio, potrebbe essere utile implementare 
+una funzione length che conta il numero di elementi in una lista contenente elementi di qualsiasi tipo:
+fun length<X>:(list[X])->int (l)
+{ if (l==empty) then {0}
+  else {1+length<X>(rest(l))} }
+L'idea e' associare alla dichiarazione di funzione dei tipi generici: in questo caso X e' 
+un tipo generico associato alla dichiarazione di length. 
+Quando una funzione con tipi generici viene invocata, e' necessario istanziare tali tipi generici. 
+Ad esempio, si puo' invocare questa funzione nel seguente modo:
+length<int>([1 ::[2 :: empty]])
+length<bool>([true :: empty]) 

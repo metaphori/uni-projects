@@ -1,0 +1,150 @@
+  let 
+	
+  	var x:int=7; 
+  	var y:int=8; 
+  	fun myMult:int (a:int, c:int) { a*x };
+  	fun length:int (l:list[int]) { if(l==empty) then { 0 } else {1+length(rest(l))} };
+ 	fun testNot:bool (b:bool) { not(b) }; 
+  	fun fWithLet:int() {
+  		let
+  			var x:int = 6;
+  			fun subf:int(x:int) { 
+  					x+1
+  			};
+  		in
+  			x+7*subf(1);
+  	};
+
+  	fun makelist:list[int] (start:int, end:int) { 
+  		if (start==end) then { [start::empty] } 
+  		else { [start :: makelist(start+1, end)]  }
+  	};
+  	fun makelist2:list[int] (start:int, end:int, step:int) { 
+  		if (start>=(end+1)) then { empty } 
+  		else { [start :: makelist2(start+step, end,step)]  }
+  	};  	  	
+  	
+	fun testf:bool(){
+		let
+			fun test:int (b:bool) { if(b) then { 3 } else { 4 } };
+			var myf:(bool)->int = test;
+		in
+			print(myf(true)==3);
+			
+	};
+		
+  	fun callitWithFive:int (argy:(int)->int) { argy(5) };
+  	
+  	
+  	fun printlist:int (l:list[int]) { if(l==empty) then { 0 } else { print(first(l)) + printlist(rest(l)) } };
+	fun double:int (x:int) { 
+		x*2
+	};
+  	fun map:list[int]( lst:list[int], argf:(int)->int ) { 
+  		if (lst==empty) then { empty }
+  		else { [ argf(first(lst)) :: map(rest(lst), argf) ] }
+  	};
+  	var mylst:list[int] = [77::[88::[99::empty]]];
+
+	fun filter:list[int](lst:list[int], predicate:(int)->bool) {
+		let 
+			fun getRest:list[int] (l:list[int]){
+				if(l==empty) then { empty }
+				else { rest(l) }
+			};
+			fun getHead:int (l:list[int]){
+				if(l==empty) then { 0 } 
+				else { first(l) }
+			};
+			var rl:list[int] = getRest(lst);
+			var hd:int = getHead(lst);
+			var myfref:(int)->bool = predicate;
+			fun myfref2:(int)->bool(){ myfref };
+		in
+			if(lst==empty) then { empty }
+			else {
+				if(predicate(first(lst))) then { [hd :: filter(rest(lst),myfref2())] }
+				else { filter(rl,myfref) }
+			};
+	};
+
+	fun mypred:bool (x:int) { x>=5 };
+	
+	
+	var k:int = 50;
+	fun retf:(int)->bool (h:int) { 
+		let
+			fun fxx:bool (z:int) {
+				if(print(h)+print(k)>=print(z)) then {true} else {false}
+			};
+		in
+			fxx;
+	};
+	fun runf:bool (ff:(int)->bool) { ff(100) };
+	
+	fun foldl:int (f:(int,int)->int, acc:int, lst:list[int]) {
+		if(lst==empty) then { acc }
+		else { foldl(f, f(first(lst),acc), rest(lst))  }
+	};
+
+	fun sum:int (a:int, b:int) { a+b };
+
+	
+	fun f:int (l:list[int], g:(bool,list[bool])->int) { 0 };
+
+	fun foldleft<T,U>:U (f:(T,U)->U, acc:U, l:list[T]){
+		if(l==empty) then { acc }
+		else { foldleft<T,U>(f, f(first(l),acc), rest(l)) }
+	};
+	fun cons<C>:list[C] (head:C, tail:list[C]){ [head::tail] };
+	fun reverse<W>:list[W] (l:list[W]){
+		foldleft<W,list[W]>(cons<W>, empty, l)
+	};
+	fun printlist2<P>:list[P] (l:list[P]){
+		if(l==empty)then{ empty }
+		else { [print(first(l)) :: printlist2<P>(rest(l))] }
+	};
+
+	
+					/*
+					var ONE:int = 1;							
+					fun GG:()->int (){					
+						let		
+							var TWO:int = 2;								
+							fun HH:int(){ ONE };									
+						in										
+							HH;								
+					};				
+					fun ZZ:int (){
+						let
+						in
+							ONE;
+					};							
+					var HREF:()->int = GG();*/		
+					
+	
+	fun pippo<X>:X  (x:X) {
+		if(pippo<int>(5)==5)then{x}else{x}
+	};				
+			
+  in  
+  	pippo<bool>(true);
+  	
+  
+	/*printlist2<int>( 
+  		reverse<int>(reverse<int>(reverse<int>(makelist(4,8))))
+  	);*/
+  
+  	/*print(HREF());  */
+  	/*print( foldl(sum, 0, makelist(2,9)) ); */  /* => 44 */
+  
+  	/*print(length(makelist(0,9)));*/
+  
+  	/*print( runf( retf( 555 ) ) ) + print(callitWithFive(double));*/
+	/* print(simple(times)+1); */
+  	/* print(fWithLet()); */		
+  	/* print(not(false && (print(8)==8)) || (print(7)==7)); ==> 1 (short-circuit AND/OR!!!) */
+  	/* print(10/6); ==> 1 */
+  	/* print(length([1::[x::[3::[y::empty]]]])); ==> 4 */
+  	/* print(testNot((1+3<=7*4-1) && (10>=1+1*1) && not(not(false)))); ==> 1 */
+  	/* printlist([1::[x::[3::[y::empty]]]]); ==> 1 7 3 8 */

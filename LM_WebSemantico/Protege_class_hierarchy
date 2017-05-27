@@ -1,0 +1,72 @@
+Protegé class hierarchy
+
+MPMO_DomainConcepts
+	PMModel
+	PMConcept
+	Resource
+		Deliverable
+	PMEffort
+		Activity
+			Process
+				Project
+	Agent
+		Team
+		Organization
+	Role
+	Lifecycle
+	Team
+MPMO_ValuePartitions
+Tangibility
+	Tangible
+	Intangible
+ResourceKind
+	Time
+	Physical
+	Financial
+	Human
+
+
+
+
+SPARQL queries
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX mpmo: <http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX org: <http://www.w3.org/ns/org#>
+
+# For each project, list all participants with their respective role
+SELECT ?participant ?role ?project
+WHERE {
+	?membership a mpmo:Membership .
+	?membership org:member ?participant .
+	?membership org:role ?role .
+	?membership mpmo:within ?project .
+}
+
+# List all members with their role in an organization, optionally listing the projects where s/he is involved
+SELECT ?participant ?organization ?role ?project
+WHERE {
+	?membership a mpmo:Membership .
+	?membership org:member ?participant .
+	?membership org:role ?role .
+	?membership org:organization ?organization .
+	OPTIONAL { ?membership mpmo:within ?project . }
+}
+
+# Select all PMConcepts
+SELECT ?concept #?subclass ?superclass
+WHERE {
+	?concept a mpmo:PMConcept .
+	#OPTIONAL { ?subclass rdfs:subClassOf ?concept } .
+	#OPTIONAL { ?concept rdfs:subClassOf ?superclass } .
+}
+
+SELECT ?project ?pmmodel
+WHERE {
+	?project a mpmo:Project.
+	?project mpmo:isGovernedBy ?pmmodel .
+}

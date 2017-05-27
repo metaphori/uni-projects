@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY org "http://www.w3.org/ns/org#" >
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY time "http://www.w3.org/2006/time#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY mpmo "http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#" >
+]>
+
+<rdf:RDF xmlns="http://www.semanticweb.org/robertocasadei/mymodels/3rdAssignment#"
+     xml:base="http://www.semanticweb.org/robertocasadei/mymodels/3rdAssignment#"
+     xmlns:mpmo="http://www.semanticweb.org/robertocasadei/ontologies/2014/4/mpmo#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+    <foaf:Person rdf:ID="ProfAntonellaCarbonaro">
+    </foaf:Person>
+    <foaf:Person rdf:ID="RobertoCasadei">
+    </foaf:Person>
+
+    <mpmo:Project rdf:ID="MyThirdAssignment">
+        <mpmo:hasActivity rdf:resource="&mpmo;Deployment"/>
+        <mpmo:hasActivity rdf:resource="&mpmo;Development"/>
+        <mpmo:hasActivity rdf:resource="&mpmo;Inception"/>
+        <mpmo:isGovernedBy rdf:resource="&mpmo;SimplePMModel"/>
+    </mpmo:Project>
+
+    <mpmo:Membership rdf:ID="MyInvolvement">
+        <org:memberDuring>
+            <time:DateTimeInterval>
+                <time:hasDateTimeDescription>
+                    <time:DateTimeDescription>
+                        <time:month rdf:datatype="&xsd;gMonth">05</time:month>
+                        <time:year rdf:datatype="&xsd;gYear">2014</time:year>           
+                    </time:DateTimeDescription>
+                </time:hasDateTimeDescription>
+            </time:DateTimeInterval>
+        </org:memberDuring>
+        <org:organization rdf:resource="#MyOwnOrganization"/>
+        <within rdf:resource="#MyThirdAssignment"/>
+        <org:role rdf:resource="&mpmo;Project_manager"/>
+        <org:member rdf:resource="#RobertoCasadei"/>    
+    </mpmo:Membership>
+    <mpmo:Membership rdf:ID="ProfInvolvement">
+        <org:member rdf:resource="#Antonella_Carbonaro"/>
+        <org:role rdf:resource="&mpmo;Customer"/>
+        <within rdf:resource="#MyThirdAssignment"/>
+        <org:organization rdf:resource="#Unibo"/>
+    </mpmo:Membership>
+    <mpmo:Membership rdf:ID="MyStudentMembership">
+        <org:member rdf:resource="#Roberto_Casadei"/>
+        <org:role rdf:resource="#Student"/>
+        <org:organization rdf:resource="#Unibo"/>
+    </mpmo:Membership>
+
+    <mpmo:Role rdf:ID="Student" />
+
+    <mpmo:Organization rdf:ID="MyOwnOrganization"></mpmo:Organization>
+    <mpmo:Organization rdf:ID="Unibo"></mpmo:Organization>
+
+    <mpmo:Deliverable rdf:ID="ThisOwlOntology">
+        <rdf:type rdf:resource="&mpmo;Digital"/>
+    </mpmo:Deliverable>
+    <mpmo:Deliverable rdf:ID="ThisPresentation">
+        <rdf:type rdf:resource="&mpmo;Digital"/>
+    </mpmo:Deliverable>    
+</rdf:RDF>

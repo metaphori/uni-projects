@@ -1,0 +1,45 @@
+push 150
+push 15
+push 1
+sw
+push 2
+sw
+push 2
+lw
+push 1
+lw
+
+increment:
+b moltiplicatore
+
+prosegui:
+push 3
+lw
+mult
+b if
+if:
+bless stampa1
+b stampa2
+
+stampa1:
+push 3
+lw
+print
+pop
+halt
+
+stampa2:
+push 2
+lw
+push 1
+lw
+b increment
+
+moltiplicatore:
+push 3
+lw
+push 1
+add
+push 3
+sw
+b prosegui

@@ -1,0 +1,45 @@
+let
+
+  	fun makelist:list[int] (start:int, end:int) { 
+  		if (start==end) then { [start::empty] } 
+  		else { [start :: makelist(start+1, end)]  }
+  	};  
+
+  	fun printlist:int (l:list[int]) { if(l==empty) then { 0 } else { print(first(l)) + printlist(rest(l)) } };
+	
+	fun double:int (x:int) { 
+		x*2
+	};
+  	
+  	fun map:list[int]( lst:list[int], argf:(int)->int ) { 
+  		if (lst==empty) then { empty }
+  		else { [ argf(first(lst)) :: map(rest(lst), argf) ] }
+  	};
+
+	fun filter:list[int](lst:list[int], predicate:(int)->bool) {
+		let 
+			fun getRest:list[int] (l:list[int]){
+				if(l==empty) then { empty }
+				else { rest(l) }
+			};
+			fun getHead:int (l:list[int]){
+				if(l==empty) then { 0 } 
+				else { first(l) }
+			};
+			var rl:list[int] = getRest(lst);
+			var hd:int = getHead(lst);
+			var myfref:(int)->bool = predicate;
+			fun myfref2:(int)->bool(){ myfref };
+		in
+			if(lst==empty) then { empty }
+			else {
+				if(predicate(first(lst))) then { [hd :: filter(rest(lst),myfref2())] }
+				else { filter(rl,myfref) }
+			};
+	};
+
+	fun mypred:bool (x:int) { x>=5 };
+
+  in
+  
+  	printlist(map(filter(makelist(3,7), mypred), double)); /* => 10 12 14 */

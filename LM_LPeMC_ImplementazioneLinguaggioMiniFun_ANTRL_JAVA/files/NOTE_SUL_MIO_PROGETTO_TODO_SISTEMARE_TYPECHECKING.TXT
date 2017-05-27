@@ -1,0 +1,29 @@
+Il typechecking è buggato
+
+Come emerso durante l'orale, a dei problemi con programmi del tipo
+
+  let
+    fun f<X>:X (x:X){
+      f<int>(2)
+    };
+  in
+    f<bool>(true);
+    
+
+in particolare, nella mia implementazione corrente, il typechecking di un FunRefNode (riferimento a funzione eventualmente con istanziazioni)
+ effettua ricorsivamente un typechecking sul FunDeclNode corrispondente. Ma ciò crea problemi.
+ 
+Inoltre quello che si effettua inizialmente è skippare le dichiarazioni di funzioni generiche.
+
+Questo approccio porta a errori.
+Modifiche da effettuare:
+  - effettuare il typechecking delle dichiarazioni di funzioni generiche (ritornerà un tipo-funzione che include parametri generici)
+  - in fase di chiamata di funzione con istanziazioni, si istanzia il tipo-funzione generico coi parametri e si verifica 
+      che i parametri attuali abbiano tipo giusto
+      
+NOTA:
+  - non dev'essere possibile usare operatori type-specific su argomenti di tipo generico
+      e.g.    fun h<E>:E (arg1:E){ arg1+arg1 };
+      
+  quindi in fase di typechecking della dichiarazione di h() l'operatore PLUS darà errore perché
+    almeno uno degli operandi è di tipo generico.

@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<rdf:RDF 
+	xml:base="http://www.example.it/myPMeffort#"
+
+	xmlns:mpmo="http://robertocasadei.it/my-pm-ontology#"
+
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:org="http://www.w3.org/ns/org#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+	<!-- **************************************************** -->
+	<!-- ******************* RDFS CLASSES ******************* -->
+	<!-- **************************************************** -->	
+
+	<!-- Core classes -->
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#PMModel"> 
+		<!--is a PM concept itself?--> 
+		<rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme" />
+		<rdfs:label>Project management model</rdfs:label>
+		<rdfs:comment>It represents a project management model, i.e., a set of concepts that can be used with the aim of successfully carrying out one or more project management efforts.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#PMEffort"> 
+		<!--is a PM concept itself?-->
+		<rdfs:label>Project management effort</rdfs:label>
+		<rdfs:comment>It represents a project management effort, i.e., an endeavour which should be governed using project management techniques.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#PMConcept"> 
+		<!--is a PM concept itself?-->
+		<rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+		<rdfs:label>Project management concept</rdfs:label>
+		<rdfs:comment>It represents a project management concept, i.e., a concept that can be used within a project management model.</rdfs:comment>
+	</rdfs:Class>
+
+	<!-- Project management concept classes -->
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#Process">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMConcept" />
+		<rdfs:label>Process</rdfs:label>
+		<rdfs:comment>A process is a set of interrelated actions and activities performed to create a pre-specified product, service, or result. Each process is characterized by its inputs, the tools and techniques that can be applied, and the resulting outputs.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#Project">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#Process" />
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMEffort" />
+		<rdfs:label>Project</rdfs:label>
+		<rdfs:comment>A project is temporary endeavor undertaken to create a unique product, service, or result.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#Organization">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMConcept" />
+		<rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Organization" />
+		<rdfs:label>Organization</rdfs:label>
+		<rdfs:comment>An organization is a group of individuals organized to work for some purpose or mission.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#ValueResource">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMConcept" />
+		<rdfs:label>Value resource</rdfs:label>
+		<rdfs:comment>Anything expected to produce value through interaction with other entities.</rdfs:comment>
+	</rdfs:Class>	
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#Deliverable">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#ValueResource" />
+		<rdfs:label>Deliverable</rdfs:label>
+		<rdfs:comment>A resource expected to produce value to those at which the resource is delivered.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#Participant">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMConcept" />
+		<rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
+		<rdfs:label>Participant</rdfs:label>
+		<rdfs:comment>An agent (which may be a person but not necessarily) which actively does something within a project.</rdfs:comment>
+	</rdfs:Class>
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#Role">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMConcept" />
+		<rdfs:subClassOf rdf:resource="http://www.w3.org/ns/org#Organization" />
+		<rdfs:label>Role</rdfs:label>
+		<rdfs:comment>A role within a project.</rdfs:comment>
+	</rdfs:Class> 
+
+	<!-- Basic classes -->
+	<rdfs:Class rdf:about="http://robertocasadei.it/my-pm-ontology#SimplePMM">
+		<rdfs:subClassOf rdf:resource="http://robertocasadei.it/my-pm-ontology#PMModel" />
+		<mpmo:applies rdf:resource="http://robertocasadei.it/my-pm-ontology#Organization" />
+		<mpmo:applies rdf:resource="http://robertocasadei.it/my-pm-ontology#Deliverable" />
+		<mpmo:applies rdf:resource="http://robertocasadei.it/my-pm-ontology#Participant" />
+		<mpmo:applies rdf:resource="http://robertocasadei.it/my-pm-ontology#Role" />
+	</rdfs:Class>
+
+	<!-- **************************************************** -->
+	<!-- ****************** RDFS PROPERTIES ***************** -->
+	<!-- **************************************************** -->
+	<rdfs:Property rdf:about="http://robertocasadei.it/my-pm-ontology#governsExecutionOf">
+		<rdfs:domain rdf:resource="http://robertocasadei.it/my-pm-ontology#PMModel" />
+		<rdfs:range rdf:resource="http://robertocasadei.it/my-pm-ontology#Project" />
+		<rdfs:comment>It states that the given project management model (subject) is applied to the given project (object)</rdfs:comment>
+	</rdfs:Property>
+
+	<rdfs:Property rdf:about="http://robertocasadei.it/my-pm-ontology#applies">
+		<rdfs:domain rdf:resource="http://robertocasadei.it/my-pm-ontology#PMModel" />
+		<rdfs:range rdf:resource="http://robertocasadei.it/my-pm-ontology#PMConcept" />
+		<rdfs:comment>It states that the given project management model (subject) makes use of the given project management concept (object)</rdfs:comment>
+	</rdfs:Property>
+
+	<!-- **************************************************** -->
+	<!-- ********************* INSTANCES ******************** -->
+	<!-- **************************************************** -->
+
+	<!-- AN EXAMPLE: "THIS ASSIGNMENT" DESCRIBED IN THE CONTEXT OF THE ONTOLOGY -->
+	<mpmo:SimplePMM rdf:about="#PMModelForThisAssignment">
+		<mpmo:governsExecutionOf rdf:resource="#ThisAssignment" />
+	</mpmo:SimplePMM>
+	<rdf:Description rdf:ID="ThisAssignment">
+			<!--Or, equivalently, <mpmo:Project rdf:ID="ThisAssignment" /> -->
+		<rdf:type rdf:resource="http://robertocasadei.it/my-pm-ontology#Project" />
+	</rdf:Description>
+	<foaf:Person rdf:ID="RobertoCasadei">
+	   <foaf:name>Roberto Casadei</foaf:name>
+	   <foaf:title>Dr.</foaf:title>
+	   <foaf:firstName>Roberto</foaf:firstName>
+	   <foaf:surname>Casadei</foaf:surname>
+	   <foaf:nick>robyonrails</foaf:nick>
+	</foaf:Person>
+	<org:Membership rdf:ID="MyEngagement">
+		<org:organization>
+			<mpmo:Organization rdf:ID="MyOrganization">
+				<rdfs:comment>My organization (composed only by me).</rdfs:comment>
+			</mpmo:Organization>
+		</org:organization>
+		<org:member rdf:resource="#RobertoCasadei" />
+		<org:role>
+			<mpmo:Role rdf:ID="Factotum">
+				<rdfs:comment>The person who does everything.</rdfs:comment>
+			</mpmo:Role>
+		</org:role>
+	</org:Membership>
+
+</rdf:RDF>

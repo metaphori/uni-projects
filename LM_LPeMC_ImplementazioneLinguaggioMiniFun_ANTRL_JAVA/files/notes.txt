@@ -1,0 +1,97 @@
+
+	9 gennaio
+	4 febbraio
+	20 febbraio
+
+
+IMPL. FUNZIONI
+
+	AR content in this order
+		- return address
+		- actual parameters
+		- access link (FOR STATIC SCOPING)
+		- control link = points to AR of caller (=> ci dà info sulla catena delle chiamate)
+		- return value (top of stack)
+		
+	Static scope with access links
+		- use access link to find vars defined in outer scopes
+		
+		3 cases
+			1) call to local function	=> access link (of newly created  AR)  = address of current AR
+			2) recursive call			=> access link = *access link* of current AR
+			3) call to function outside current scope	=> access link = access link of outer scope containing declaration
+														=> follow chain of access links for the difference between the 2 nesting levels
+														(si fanno tanti salti quanti ce ne sono nella struttura dell'annidamento sintattico)
+														
+		
+		AR in parte creato dal chiamante (RA, parametri, ...)
+		in parte dal chiamato (... local vars)
+		
+		
+	Heap lo usiamo per strutture dati dinamiche
+	
+	
+	nelle slide la cima dello stack è in un registro interno
+	
+	|
+	|		RA
+	|	------------
+	|
+	|	
+	|	    RA (
+	|    first param
+	|     ......
+	|    last param
+	|   FP of caller 
+	
+	function call =>    push FP
+						
+	
+	function def => 	FP = TOS  (il chiamato posiziona il FP subito dopo i dati messi dal chiamante)
+						push RA	  (Si mette sullo stack il RA)
+						code gen(body) => questo metterà in cima allo stack il valore di ritorno
+						RA <- 
+						
+						
+						FP <- 
+						JUMP TO address in RA
+						
+						
+	Esercizio:
+		- controlli semantici
+		- AST
+		
+		
+		
+
+LPeMC -- LAB 20 dicembre 2013
+	
+	ACTIVATION RECORD
+	
+	| 
+	| valore prodotto dalla gen del codice del body (poi si salva valore di ritorno in RV, si salva return address in RA, si fanno le pop fino a 
+	 ripristinare il framepointer; valore di ritorno messo al posto del control link; infine jump to RA)
+	| Return-Address (e facciamo puntare FP alla posizione precedente, cioè dove c'è l'access link)
+	| ( di qui sopra si occupa il chiamato -- sulla base di FunDeclNode )
+	| ( il chiamante qui ha finito il suo lavoro => farà un jump per salvare l'IP nel RA-ReturnAddress )
+	| access_link (per static scoping; deve scorrere un num "nesting_level" di AR; è il FP dell'AR più recente del padre sintattico)
+	| 1st arg
+	| ....
+	| n-esimo arg
+	| control_link (per gestire catena degli AR; è il FP del chiamante)
+	| (chiamante comincia a riempire sulla base di FunCallNode)
+	
+	Il chiamante guarda il proprio nesting level e quello della funz invocata per settare l'access link. 
+	Facendone la differenza capisce dove è dichiarata la funz invocata.
+	
+	
+	Nella memoria, similarmente alle variabili, mettiamo l'indirizzo al codice di una funzione
+	Funzione può essere definita in uno scope diverso da quello corrente. Individuiamo lo scope e poi ci basiamo sull'offset; per far ciò
+	 dobbiamo seguire gli access link.
+	 
+		Il codice delle funzioni dopo l'istruzione "halt"
+		
+
+empty è compatibile con lista di qualsiasi cosa
+
+AR con var locali dopo il valore di return address nello stack
