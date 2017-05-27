@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="src" path="/it.unibo.buttonLedSystem"/>
+	<classpathentry kind="src" path="/it.unibo.interfaces"/>
+	<classpathentry kind="src" path="/it.unibo.noawtsupports"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/uniboEventInterfaces.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/infoReply.jar"/>
+	<classpathentry kind="src" path="/it.unibo.envBaseAwt"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/arduino/bit32/RXTXcomm.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/it.unibo.group08.interfaces"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

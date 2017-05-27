@@ -1,0 +1,45 @@
+System robotSystemStep2 -java8 -http :
+
+Context UserCtx ip[host="localhost" port=8090]{
+	Actor QActorConsole;	
+}
+
+Robot RobotStep2 bbb ip[host="localhost" port=8020] {
+	
+	Event haltCmd                               ;
+	Event Line      when linefront              ;
+	Event Distance  when distfront  val<10	    ;
+	Event endPhoto                              ;
+	
+	Task         handleLineTask for Line        ;
+	EventHandler handlePhoto    for endPhoto    ;
+	
+	Action takePhoto    maxtime(2000)           ;
+
+	Plan alternate_plan 
+		println("Executing alternative plan... STOPPING");
+		stop speed(0)
+
+	Plan take_picture_plan
+		println("Executing ''Take picture'' plan... ");
+		stop           speed(0);
+		[insideSensibleArea] execAction takePhoto("group8foto.jpg") 
+		                     answerEv endPhoto handledBy handlePhoto;
+		resumePlan
+	
+	Plan robot_behavior normal
+		println("Let's start!!!");
+		forward     speed(80) angle(0) time(6000)
+		            react event    haltCmd -> alternate_plan
+		            or    event    Distance -> take_picture_plan;
+		right       speed(80) angle(0) time(400)	
+		            react event    haltCmd -> alternate_plan
+		            or    event    Distance -> take_picture_plan;
+		forward	    speed(80) angle(0) time(4000)	
+		            react event    haltCmd -> alternate_plan
+		            or    event    Distance -> take_picture_plan;
+		backward    speed(80) angle(0) time(4000)	
+		            react event    haltCmd -> alternate_plan
+		            or    event    Distance -> take_picture_plan		
+}
+	

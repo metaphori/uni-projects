@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri Nov 07 19:13:00 CET 2014
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=ButtonLedSystem-ObjectBased.tex
+outputFile=ButtonLedSystem-ObjectBased.pdf
+langSpell=en
+markDer=true
+srcDir=

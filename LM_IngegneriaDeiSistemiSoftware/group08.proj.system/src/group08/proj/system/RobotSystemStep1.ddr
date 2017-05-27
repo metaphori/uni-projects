@@ -1,0 +1,29 @@
+System robotSystemStep1 -java8 -http :
+
+Context UserCtx ip[host="localhost" port=8090]{
+	Actor QActorConsole;	
+}
+
+Robot RobotStep1 bbb ip[host="localhost" port=8020] {
+	
+	Event haltCmd                       ;
+	Event Line          when linefront  ;
+	
+	Task handleLineTask for Line        ;
+
+	Plan alternate_plan 
+		println("Executing alternative plan... STOPPING");
+		stop speed(0)
+	
+	Plan robot_behavior normal
+		println("Let's start!!!");
+		forward     speed(80) angle(0) time(6000)
+		            react event haltCmd -> alternate_plan;
+		right       speed(80) angle(0) time(400)
+		            react event haltCmd -> alternate_plan;
+		forward     speed(80) angle(0) time(4000)	
+		            react event haltCmd -> alternate_plan;
+		backward    speed(80) angle(0) time(4000)	
+		            react event haltCmd -> alternate_plan
+		
+}

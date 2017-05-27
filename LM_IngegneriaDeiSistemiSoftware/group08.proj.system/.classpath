@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src-gen"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_05"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/baseRobot.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/baseRobotUsage.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/bls.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/CtxSonarSender.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/infoReply.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/qactors.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/qevstream.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/qevstreams.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/tuprolog.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/uniboEnvBaseAwt.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/uniboEventInterfaces.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/uniboEventPlatform.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/uniboInterfaces.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/unibonoawtsupports.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/unibo/uniboRobotActor.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/rxJava/rxjava-core-0.18.4.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/http/nanoHTTPD.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/rxtx/RXTXcomm-2.2pre2.jar"/>
+	<classpathentry kind="lib" path="/it.unibo.iss.libs/libs/pi4j/pi4j-core.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

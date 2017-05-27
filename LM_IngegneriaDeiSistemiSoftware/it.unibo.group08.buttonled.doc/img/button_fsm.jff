@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.4.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="0">
+			<x>32.0</x>
+			<y>53.0</y>
+			<label>NOT pressed</label>
+			<initial/>
+		</state>
+		<state id="1" name="1">
+			<x>141.0</x>
+			<y>55.0</y>
+			<label>pressed</label>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>1</from>
+			<to>0</to>
+			<read/>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>pressIt</read>
+		</transition>
+	</automaton>
+</structure>

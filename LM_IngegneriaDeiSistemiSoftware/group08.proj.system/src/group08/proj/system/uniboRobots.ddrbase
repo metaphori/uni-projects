@@ -1,0 +1,36 @@
+/* 
+ * ===================================
+ * mock
+ * ===================================
+ */ 
+RobotBase        
+// BASIC                
+motorleft  = Motor  [ simulated 0  ]  position: LEFT
+motorright = Motor  [ simulated 0  ]  position: RIGHT
+l1Mock     = Line   [ simulated 0  ]  position: BOTTOM
+distFrontMock= Distance [ simulated 0  ] position: FRONT
+mgn1 = Magnetometer  [ simulated 0 ] private position: FRONT
+// COMPOSED   
+rot    = Rotation [ mgn1  ] private position: FRONT
+motors = Actuators [ motorleft , motorright  ] private position: BOTTOM
+Mainrobot mock  [ motors,rot ]; 
+
+/* 
+ * ===================================
+ * bbb
+ * ===================================
+ */ 
+RobotBase     
+// BASIC                         
+motorleft = Motor  [ gpiomotor pincw 3 pinccw 2  ]  position: LEFT
+motorright = Motor  [ gpiomotor pincw 12 pinccw 13  ]  position: RIGHT
+mgn1 = Magnetometer  [ magneto5883l x 172 y 34 z 0 ] private position: FRONT  
+linefront = Line   [ serial rate 9600 ]  position: FRONT    
+distfront = Distance  [ serial rate 9600 ]  position: FRONT 
+distleft  = Distance  [ serial rate 9600 ]  position: LEFT
+distright = Distance  [ serial rate 9600 ]  position: RIGHT  
+impact1 = Impact [ gpioswitch pin 15 pulldown ]  position: FRONT 
+// COMPOSED
+rot = Rotation [ mgn1  ] private position: FRONT
+motors = Actuators [ motorleft , motorright  ] private position: BOTTOM
+Mainrobot bbb  [ motors,rot  ] pid (6,250,1)  ;

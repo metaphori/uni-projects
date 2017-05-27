@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.4.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="off">
+			<x>187.0</x>
+			<y>104.0</y>
+			<initial/>
+		</state>
+		<state id="1" name="on">
+			<x>345.0</x>
+			<y>103.0</y>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>setOn</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>0</to>
+			<read>doSwitch</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>doSwitch</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>0</to>
+			<read>setOff</read>
+		</transition>
+	</automaton>
+</structure>

@@ -1,0 +1,655 @@
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% package sillabazione italiana e uso lettere accentate
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{soul}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{manifest}
+
+\makeatother
+
+%%%%%%%
+ \newif\ifpdf
+ \ifx\pdfoutput\undefined
+ \pdffalse % we are not running PDFLaTeX
+ \else
+ \pdfoutput=1 % we are running PDFLaTeX
+ \pdftrue
+ \fi
+%%%%%%%
+ \ifpdf
+ \usepackage[pdftex]{graphicx}
+ \else
+ \usepackage{graphicx}
+ \fi
+%%%%%%%%%%%%%%%
+ \ifpdf
+ \DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+ \else
+ \DeclareGraphicsExtensions{.eps, .jpg}
+ \fi
+%%%%%%%%%%%%%%%
+
+\newcommand{\java}{\textsf{Java}}
+\newcommand{\contact}{\emph{Contact}}
+\newcommand{\corecl}{\texttt{corecl}}
+\newcommand{\medcl}{\texttt{medcl}}
+\newcommand{\msgcl}{\texttt{msgcl}}
+\newcommand{\android}{\texttt{Android}}
+\newcommand{\dsl}{\texttt{DSL}}
+\newcommand{\jazz}{\texttt{Jazz}}
+\newcommand{\rtc}{\texttt{RTC}}
+\newcommand{\ide}{\texttt{Contact-ide}}
+\newcommand{\xtext}{\texttt{XText}}
+\newcommand{\xpand}{\texttt{Xpand}}
+\newcommand{\xtend}{\texttt{Xtend}}
+\newcommand{\pojo}{\texttt{POJO}}
+\newcommand{\junit}{\texttt{JUnit}}
+
+\newcommand{\action}[1]{\texttt{#1}\xspace}
+\newcommand{\code}[1]{{\small{\texttt{#1}}}\xspace}
+\newcommand{\codescript}[1]{{\scriptsize{\texttt{#1}}}\xspace}
+
+% Cross-referencing
+\newcommand{\labelsec}[1]{\label{sec:#1}}
+\newcommand{\xs}[1]{\sectionname~\ref{sec:#1}}
+\newcommand{\xsp}[1]{\sectionname~\ref{sec:#1} \onpagename~\pageref{sec:#1}}
+\newcommand{\labelssec}[1]{\label{ssec:#1}}
+\newcommand{\xss}[1]{\subsectionname~\ref{ssec:#1}}
+\newcommand{\xssp}[1]{\subsectionname~\ref{ssec:#1} \onpagename~\pageref{ssec:#1}}
+\newcommand{\labelsssec}[1]{\label{sssec:#1}}
+\newcommand{\xsss}[1]{\subsectionname~\ref{sssec:#1}}
+\newcommand{\xsssp}[1]{\subsectionname~\ref{sssec:#1} \onpagename~\pageref{sssec:#1}}
+\newcommand{\labelfig}[1]{\label{fig:#1}}
+\newcommand{\xf}[1]{\figurename~\ref{fig:#1}}
+\newcommand{\xfp}[1]{\figurename~\ref{fig:#1} \onpagename~\pageref{fig:#1}}
+\newcommand{\labeltab}[1]{\label{tab:#1}}
+\newcommand{\xt}[1]{\tablename~\ref{tab:#1}}
+\newcommand{\xtp}[1]{\tablename~\ref{tab:#1} \onpagename~\pageref{tab:#1}}
+% Category Names
+\newcommand{\sectionname}{Section}
+\newcommand{\subsectionname}{Subsection}
+\newcommand{\sectionsname}{Sections}
+\newcommand{\subsectionsname}{Subsections}
+\newcommand{\secname}{\sectionname}
+\newcommand{\ssecname}{\subsectionname}
+\newcommand{\secsname}{\sectionsname}
+\newcommand{\ssecsname}{\subsectionsname}
+\newcommand{\onpagename}{on page}
+
+\newcommand{\xauthA}{Roberto Casadei }
+\newcommand{\xauthB}{Massimiliano Martella}
+\newcommand{\xauthC}{Roberto Reda}
+\newcommand{\xfaculty}{II Faculty of Engineering}
+\newcommand{\xunibo}{Alma Mater Studiorum -- University of Bologna}
+\newcommand{\xaddrBO}{viale Risorgimento 2}
+\newcommand{\xaddrCE}{via Venezia 52}
+\newcommand{\xcityBO}{40136 Bologna, Italy}
+\newcommand{\xcityCE}{47023 Cesena, Italy}
+
+\definecolor{myrgb}{RGB}{0, 0, 100}
+\newcommand{\mycolor}{myrgb}
+
+\usepackage{float}
+
+\usepackage{color}
+\newcommand{\colorize}[1]{{\color{\mycolor}#1}}
+
+%
+% Comments
+%
+%%% \newcommand{\todo}[1]{\bf{TODO:}\emph{#1}}
+
+
+\begin{document}
+
+\title{Software Systems Engineering\\
+ process report template}
+
+%%% \author{\xauthA \and \xauthB}
+\author{\xauthA \and \xauthB \and \xauthC}
+
+
+%\institute{%
+%%%  \xunibo\\\xaddrCE, \xcityCE\\\email{\{nameA.studentA, nameB.studentB\}@studio.unibo.it}
+%  \xunibo\\\xaddrCE, \xcityCE\\\email\ roberto.casadei12@studio.unibo.it
+%}
+
+\maketitle
+
+%% \begin{abstract}
+%% \footnotesize
+%%This a Latex template to be used for the reports of Software Engineering.
+%%\keywords{Software engineering, managed software development, reports, ....}
+%%\end{abstract}
+
+%%% \sloppy
+
+%===========================================================================
+\section{Introduction}
+\labelsec{intro}
+%===========================================================================
+
+ This report represents a snapshot of the current status 
+  of the ``ButtonLed'' project (\colorize{actor-based, new style}).
+
+%===========================================================================
+\section{Vision}
+\labelsec{Vision}
+%===========================================================================
+
+We believe that a good software product is the natural result of a
+\textbf{mature, systematic process}.
+
+\emph{We believe that there is no code without design, no design without
+analysis, no analysis without requirements.} So, we recognize the causal
+progression from the \emph{why} (vision/goals/requirements) to the \emph{what}
+(analysis) and finally to the \emph{how} (design/code).
+
+We recognize the importance of analysis for a mature process, but we don't want
+to waste time by just producing informal knowledge. Instead, we would like to \textbf{capitalize the
+effort spent in analysis by producing something that has value, that is, working software (prototype) and reusable frameworks}.
+That is, we believe that \emph{reuse} is prominent in what we do.
+
+We also think that following a \textbf{top-down approach}, i.e., from the
+problem to the technology, is extremely valuable because it can adequately
+support our goals. In doing so, we would like to constantly \textbf{evaluate the
+abstraction gap} in order to gain a better vision of what we need to
+\emph{effectively} build the kind of systems we are considering and also as a
+way to \emph{innovate}.
+
+Moreover, as we are dealing with (complex) software systems, we believe
+that a \textbf{systemic approach} fits more than an algorithmic approach and 
+gives us access to more powerful conceptual tools.
+
+We think that a software development process built upon the
+principles outlined above can maximize the value of the effort spent
+during analysis and development, effectively produce software architectures that
+are resistant to requirements change, and even turn those changes into an
+opportunity to increase the organizational know-how.\\
+
+\colorize{
+In this very case study, our emphasis is on
+the \textbf{relationships between the conceptual tools used in a project and
+the project itself} (i.e., processes and artifacts).
+
+We firmly believe that, as we choose to follow a top-down approach, the results
+from (requirements and problem) analysis should NOT depend on the reference paradigm
+ and, least of all, on the technological platform. 
+ 
+ However, we are aware that paradigms (and, in general, the conceptual spaces
+ projected by a given technology) are similar to \emph{lens} that make certain
+ aspects clearly visible while completely hiding others. This is not bad,
+ because \textbf{complex systems} typically consists of multiple
+ \textbf{(orthogonal) dimensions}, and each dimension might require different 
+ (conceptual and practical) tools to be adequately investigated.
+ 
+ As a consequence, we think that, in order to be able to effectively tackle the
+ problems at hand, we should
+ 
+ \begin{enumerate}
+   \item be aware of the limitations of adopting a single point of view
+   \item be aware of the current reference conceptual space in use and 
+   \item try to find and use the (conceptual) tools that most fit the problem
+ \end{enumerate}
+ 
+ so that we can reduce both the cognitive load and the abstraction gap (if a
+ platform exists or can be built).
+ 
+ In other words, we think that the use of the right tools can help minimizing
+ the \emph{accidental complexity}, thus allowing us to \textbf{focus on the
+ essential complexity} of our systems. 
+ 
+ Last but not least, we believe that the \textbf{trade-off between long-term and
+ short-term productivity} should be guided (at least) by the potential for
+ reuse and the lifetime of the software artifacts produced. In this view,
+ addressing the abstraction gap is key to grow and optimize in a sustainable
+ manner. }
+
+
+
+
+% TRACEABILITY
+
+% WHY -> WHAT -> HOW
+
+%===========================================================================
+\section{Goals}
+\labelsec{Goals}
+%===========================================================================
+
+ We use the ButtonLed system as an opportunity to actualize the vision. In this case study, 
+ \colorize{the technology hypothesis is given by the QActor framework and conceptual space}.\\
+
+We are aware that the system we are building is just one of the countless
+applications that could be built in this domain. So, we generalise/abstract from
+the issues we encounter in a sustainable manner, so that we can \textbf{factor
+domain-knowledge out of the specific system}.
+
+Also, by analyzing the requirements and the problem, we would like to produce a
+\textbf{working prototype by following an incremental (\emph{piecemeal growth})
+approach}.
+
+In particular, we would like to evaluate the cost of passing from a homogeneous,
+concentrated system to a distributed, etherogeneous system.
+
+Moreover, we would like to correlate what we do with the following concepts:
+
+\begin{itemize}
+  \item Models ($\Rightarrow$ Structure, Interaction, Behavior) as a way to
+  capture the essential characteristics of what we talk about
+  \item Software reuse as the key element to deal with bounded resources
+     \begin{itemize}
+       \item Design patterns as synthetic analyses and design ideas for
+       recurring problems
+       \item Framework vs. pattern vs. middleware
+	 \end{itemize}
+  \item Technologies as specific ways to actualize designs but also as
+  conceptual spaces (i.e., ``representing'' a paradigm)
+  \item Logic architecture as the main result from analysis and possibly our
+  main specification of the problem at hand
+  \item Traceability (from requirements to architecture to code) as a way to
+  support ``informational consistency'' within the project
+  \item Specific vs. schematic vs. generic parts of software
+\end{itemize}\\
+
+\colorize{In addition, here we shift the focus towards
+a \textbf{systematic comparison} of what we did in the two approaches:
+object-based (``old-style'') vs. message-passing (``new-style'').
+
+In particular, we want to find an answer to the following question:
+\textbf{How do the project phases (analysis, design, ..) change when the
+reference paradigm/technology-hypothesis changes?}
+
+Moreover, we also want to become aware (by seeing with our own eyes) of the
+\textbf{(long-term) advantage that results from building frameworks that
+adequately fill the abstraction gap that had been identified}.
+
+}
+
+
+%===========================================================================
+\section{Requirements}
+\labelsec{Requirements}
+%===========================================================================
+
+\begin{quote}''
+Design and build a ButtonLed software system in which a Led is turned on and off
+each time a Button is pressed.
+In particular, the system will have the button on an Android device, 
+ the controller on a RaspberryPi, and the led on Arduino.
+``\end{quote}
+
+ 
+%===========================================================================
+\section{Requirement analysis}
+\labelsec{ReqAnalysis}
+%===========================================================================
+
+We follow a \emph{systemic approach}. From the requirements, it follows that the
+system is structurally composed of three \textbf{subsystems} (for which we already know the deployment,
+see the Deployment section \ref{sec:Deployment}), \colorize{as expressed by the
+following textual, formal model (specification):}
+ 
+\lstset{frame=single, language=java, breaklines=true, numbers=left,
+basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+    keywordstyle=\color{blue}\bfseries,}
+    
+\begin{lstlisting}
+context( ctxofbutton, "Address1",  "Protocol1", "Port1" ).
+context( ctxofcontrol,   "Address2", "Protocol2",  "Port2" ).     
+context( ctxofled,   "Address3", "Protocol3",  "Port3" ).      
+\end{lstlisting}
+
+\colorize{where subsystems are modelled as \emph{contexts}. The addresses, the
+protocols, and the ports will be specific to a particular system deployment
+(Note that other means for specifying the distribution configuration might be
+used -- they are unessential at this level).
+
+We recur on the structural dimension.
+We also know what \textbf{components} the system is composed of, and how they are distributed in
+the aforementioned subsystems.}
+
+\begin{lstlisting}
+qactor( qacontrol, ctxofcontrol ).
+qactor( qabutton, ctxofbutton ).
+qactor( qaled, ctxofled ).
+\end{lstlisting}
+
+\colorize{
+By modelling the button, the led, and the controller as \emph{qactors}, we say
+that they are entities which
+\begin{itemize}
+  \item belong to a single context (subsystem)
+  \item interact by message-passing
+%  \item have a unique name in the system: 
+\end{itemize}
+
+To see what a context, a message, a name is, please refer to the QActor model
+developed by our software house.
+}
+
+\subsection{Use cases}
+\labelssec{UseCases}
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale = 0.6]{img/BLS-UseCase.png}
+    \caption{Use case 1}
+    \label{fig:usecase1}
+\end{figure}
+
+
+\subsection{Scenarios}
+\labelssec{Scenarios}
+
+ (Skipped) It's not a primary goal of this case study.
+
+\subsection{(Domain)model}
+
+
+
+From the requirements we know that:
+
+\begin{itemize}
+  \item The button has a state (pressed
+  and not pressed) and, as external entities are interested in that state, it
+  follows that it should be an \emph{observable} entity (see the
+  \emph{Observer} pattern)
+  \item The led has a state as well (on, off) and properties such as the color.
+\end{itemize}
+
+The requirements explicitly give information about the structure of the system
+and the components, and express a cause-effect relationship between the press of
+the button and the update of the state of the led. Instead, the dimensions of
+behavior and interaction are only implictly and partially described by an
+\emph{observational} point of view.	\\
+ 
+To explain what we mean by ``led" and ``button", we provide a \textbf{model} for
+them.
+
+By following an internal convention, we express those models using Java
+\textbf{interfaces}. As interfaces are not sufficient, we also provide
+\textbf{test plans} in order to better define our intended semantics.
+ 
+By analyzing our idea of ``button" and ``led", we also note that, in the domain
+of the \emph{Internet of Things}, the led and the button are particular
+instance of the concept of \textbf{device}. Moreover, we know that a
+particular device can be realized (implemented) with different technologies
+(see the \emph{Bridge pattern})
+
+See the following interfaces:
+
+\begin{itemize}
+  \item it.unibo.buttonLed.interfaces.IDevice
+  \item it.unibo.buttonLed.interfaces.IDeviceInput
+  \item it.unibo.buttonLed.interfaces.ILed
+  \item it.unibo.buttonLed.interfaces.IButton
+\end{itemize}    
+
+\subsubsection{Behavior}\\
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale=0.65]{img/ISS-FSM-Button.png}
+    \caption{Button: behavior}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale=0.65]{img/ISS-FSM-Led.png}
+    \caption{Led: behavior}
+\end{figure}
+
+
+\subsection{Test plan}
+
+ See \emph{it.unibo.group08.buttonled.test} project.
+
+%===========================================================================
+\section{Problem analysis}
+\labelsec{ProblemAnalysis}
+%===========================================================================
+
+
+\subsection{Logic architecture}
+
+The system is composed of three main components: the led, the button, and the
+controller.
+
+From the requirements, we also know that they are on different subsystems (see
+Requirements Analysis in Section \ref{sec:ReqAnalysis}).
+
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale=0.75]{img/BLSLogicalArch-ActorBased.png}
+    \caption{Logic Architecture -- Structure/Interaction view}
+    \label{fig:logicarch_inter}
+\end{figure}
+
+Please consult the software house's internal reference to get a description of
+the semantics of the ``DISPATCH'' messages.
+
+%\colorize{Note that the QAButton raises an event (rather than sending a
+%dispatch as in the last analysis iteration). In
+%fact, the button can be thought as an \emph{event source} (emitting events ,
+% and
+%the controller as an entity interested in that kind of events. In practice, it
+% is the Observer
+%pattern (abstracted from control coupling as in typical object-oriented
+%actualizations).
+%}
+
+
+For simplicity, at the moment we can think at the communication language as
+described by the following grammar:
+
+\begin{lstlisting}
+INPUT_CMD = 0 | 1
+CTRL_CMD = 0 | 1
+\end{lstlisting}
+
+The controller's behavior can be represented by the following FSM:
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale=0.65]{img/ISS-FSM-Controller.png}
+    \caption{Controller: behavior}
+\end{figure}
+
+
+
+\subsection{Abstraction gap}
+
+\colorize{Our technology hypothesis is given by the QActor framework.}
+
+The problem and the practical issues encountered through the analysis phase
+point out that a gap exists with respect to the following themes/areas:
+
+\begin{itemize}
+  \item \textbf{Model specification}: we have specified the models of the
+  system and the components using Java interfaces, test plans, and (custom
+  variants of) UML.
+  However, our need of producing models that are both formal and expressed at the right
+  level of abstraction is not adequately satisfied.\\
+  \colorize{Some work has been done with the QActor framework, but it is
+  limited to the structural dimension (see Section \ref{sec:ReqAnalysis}).}
+  
+  \item \textbf{``General'' system concepts}: OOPLs do not (directly)
+  support our system view (which we use instead of an algorithmic view) through
+  high-level concept such as ``environment'', ``situated entity'', ``named
+  entity'', \ldots $\Rightarrow$ our effort in filling this gap has resulted in
+  the \emph{it.unibo.system} package (within \emph{it.unibo.noawtsupports})\\
+  \colorize{The QActor framework also introduces the notion of \emph{context},
+  which is how we model a subsystem.}
+  
+  \item \textbf{Rapid prototyping}: our goal to have analysis end up with a
+  (graphical) prototype is not effectively supported by Java GUI libraries
+  (AWT, Swing) $\Rightarrow$ our effort in filling this gap has resulted in
+  \emph{it.unibo.envBaseAwt}
+  
+  \item \st{Communication infrastructure}: \colorize{The QActor
+  framework adequately supports a \emph{message-passing} interaction style. The
+  infrastructure hides technology-specific details (such as connection setup,
+  protocols, \ldots) and the application designer can just focus on the application
+  logic (no need for proxies etc.).}
+  
+  \item \textbf{Interaction semantics}: the high-level semantics of the
+  interaction between the system's components is not directly captured by neither the tools we use
+  to express models nor by our platform.  We conventionally
+  introduced some names (dispatch, request, signal, \ldots) to
+  specify a vocabulary for (informally) talking about interaction at the level
+  of abstraction we consider more appropriate. However, this semantics is not
+  directly supported. \colorize{However, as our infrastructure already supports
+  the sending/receiving of messages, it should be easy to extend it with
+  interaction forms of higher level.}
+  
+  \item \colorize{\st{Infrastructure configuration and setup}: 
+  	The QActor framework initializes and configures the system based on 
+  	the system's structural specification. So, the related details/issues have
+  	been completely hidden to the application designers. }
+\end{itemize}
+ 
+
+\subsection{Risk analysis}
+
+  If we don't adequately fill the abstraction gap, and if we don't abstract
+  from technology-specific and application-specific details, we risk to have
+  significant losses in case of change of (both functional and non-functional) requirements.
+  
+
+%===========================================================================
+\section{Work plan}
+\labelsec{wplan}
+%===========================================================================
+
+The project team consists of three engineers. So, ideally, the work is
+subdivided on a subsystem-basis:
+
+\begin{itemize}
+  \item One developer will design/develop the Android subsystem
+  \item One developer will design/develop the RaspberryPi subsystem
+  \item One developer will design/develop the Arduino subsystem
+\end{itemize}
+
+Here, it is important to clearly define the subsystems' interfaces
+(communication media, communication language, \ldots). An architectural design
+will be defined (see Section \ref{sec:Project}) to better specify the
+constraints and interactions.
+
+Moreover, certain code/naming conventions should be defined in order to preserve
+the internal quality (coherence) of the system.
+
+%===========================================================================
+\section{Project}
+\labelsec{Project}
+%===========================================================================
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[scale=0.60, trim=4cm 0 0
+     -1cm]{img/BLSDesignArch-ActorBased.png}
+    \caption{Design architecture}
+    \label{fig:designarch}
+\end{figure}
+
+\colorize{
+Notes:
+
+\begin{itemize}
+  \item Logical subsystems (contexts) vs. physical subsystems
+  \item Point-to-point communications require the sender to know the recipient's
+  name
+\end{itemize}
+}
+
+%\subsection{Structure}
+%\subsection{Interaction}
+%\subsection{Behavior}
+
+%===========================================================================
+\section{Implementation}
+\labelsec{Implementation}
+%===========================================================================
+
+ See \emph{it.unibo.group08.buttonled.logical} and 
+ \emph{it.unibo.group08.buttonled.actorsystem} projects.
+
+%===========================================================================
+\section{Testing}
+\labelsec{testing}
+%===========================================================================
+
+ See \emph{it.unibo.group08.buttonled.test} project.
+
+%===========================================================================
+\section{Deployment}
+\labelsec{Deployment}
+%===========================================================================
+
+ Directly from the requirements, the following deployment configuration follows:
+ 
+ \begin{itemize}
+   \item An APK package for the Android subsystem
+   \item A JAR package for the RaspberryPi subsystem
+   \item A INO file for the Arduino subsystem
+ \end{itemize}
+
+%===========================================================================
+\section{Maintenance}
+\labelsec{Maintenance}
+%===========================================================================
+
+%\newpage
+%See \cite{natMol09} until page 11 (\texttt{CMM}) and pages 96-105.
+
+%===========================================================================
+\section{Information about the authors}
+\labelsec{Author}
+%===========================================================================
+
+\vskip.5cm
+%%% \begin{figure}
+\begin{tabular}{ | c | c | c |  }
+\hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+   \includegraphics[scale = 0.4]{img/fototessera.jpg}
+   \includegraphics[scale = 0.25]{img/reda.jpg}
+   \includegraphics[scale = 0.18]{img/martella.jpg}
+\end{tabular}
+
+
+%%% \begin{itemize}
+%%% \item Titolo di studio:\\ \\
+%%% \item Interessi particolari:\\ \\
+%%% \item Ha sostenuto fino ad oggi il seguente numero di esami:\\ \\
+%%% \item Deve ancora sostenere i seguenti esami del I anno:\\ \\
+%%% \item Prevede di svolgere un tirocinio presso:\\ \\
+%%% \item Prevede di laurearsi nella sessione:\\ \\
+%%% \item Intende proseguire gli studi per conseguire: \\  \\  \\
+%%%   	presso la sede universitaria di: \\ \\
+%%% \item Intende entrare subito nel mondo del lavoro presso : \\ \\
+%%% \end{itemize}
+
+ 
+\appendix
+
+\nocite{gof94}
+\bibliographystyle{abbrv}
+\bibliography{biblio}
+
+\end{document}
+
