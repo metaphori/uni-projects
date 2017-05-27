@@ -1,0 +1,3 @@
+# posx, posy, velx, vely, accx, accy, mass
+0,0,0,0,0,0,40000
+300,0,0,1,0,0,1000
