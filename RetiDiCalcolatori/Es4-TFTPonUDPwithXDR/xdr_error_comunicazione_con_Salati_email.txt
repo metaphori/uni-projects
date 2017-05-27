@@ -1,0 +1,120 @@
+no, giusto per informazione
+
+Il 29 dicembre 2011 19:36, Roberto Casadei
+<roberto.casadei12@studio.unibo.it> ha scritto:
+> Sì è ovvia conseguenza, anche perché altrimenti si sarebbe verificato un
+> errore (o comunque qualcosa di impredicibile) e me ne sarei accorto.
+> Non so dirle di più in merito perché mi sono lasciato indietro tutti i
+> dettagli delle esercitazioni, probabilmente mi è scappato.
+>
+> Non capisco l'impatto della cosa, devo correggere l'esercitazione?
+>
+> Grazie,
+>
+> Roberto
+>
+> -----Messaggio originale----- From: claudio salati
+> Sent: Thursday, December 29, 2011 7:27 PM
+>
+> To: Roberto Casadei
+> Subject: Re: c'e' qualcosa che non torna ...
+>
+> in realta' lei non la chiama mai nelle condizioni in cui attiverebbe
+> la read anziche' la write.
+> cioe' si comporta sempre come se non avesse instaurato la connessione
+> con il server.
+>
+> in effetti era impossibile da trovare se non guardando il codice.
+> non e' stato coerente tra quella funzione e il programma principale
+>
+> Il 29 dicembre 2011 19:21, Roberto Casadei
+> <roberto.casadei12@studio.unibo.it> ha scritto:
+>>
+>> Mi dispiace sentirle dire questo, perché di test ne ho fatti
+>> estensivamente,
+>> come è vero che li ho documentati nel file di testo.
+>> Potrebbe essere stata una modifica veloce prima dell'invio dello zip, o
+>> semplicemente una svista che non ha influito nei test.
+>>
+>> Sinceramente non so dirle con precisione a proposito, comunque ho
+>> ricompilato ed anche con la read() al posto della write() riesco a
+>> trasferire i file (sia get che put).
+>>
+>> Forse un mancato refactoring dopo una modifica, non so. Posso mandarle gli
+>> screenshot.
+>>
+>> Mi scuso comunque ma è evidentemente una svista,
+>> Grazie
+>> Roberto
+>>
+>>
+>>
+>> -----Messaggio originale----- From: claudio salati
+>> Sent: Thursday, December 29, 2011 7:05 PM
+>> To: Roberto Casadei
+>> Subject: Re: c'e' qualcosa che non torna ...
+>>
+>>
+>> si', facevo riferimento a quello. evidentemente non l'ha provato molto.
+>>
+>> Il 29 dicembre 2011 18:50, Roberto Casadei
+>> <roberto.casadei12@studio.unibo.it> ha scritto:
+>>>
+>>>
+>>> Ah, credo sia una svista passata inosservata (in quanto non ha causato
+>>> alcun
+>>> problema), credo di aver scritto inavvertitamente read() al posto di
+>>> send()
+>>> / write().
+>>> Faceva riferimento a quello?
+>>>
+>>> Ora sono stato un po' spiazzato dalla mail, le ho risposto rapidamente in
+>>> quanto immerso in Ingegneria del software :\
+>>>
+>>> Mi faccia sapere,
+>>> Grazie,
+>>> saluti
+>>>
+>>>
+>>> -----Messaggio originale----- From: claudio salati
+>>> Sent: Thursday, December 29, 2011 6:34 PM
+>>> To: roberto.casadei12@studio.unibo.it
+>>> Subject: c'e' qualcosa che non torna ...
+>>>
+>>>
+>>> guardi e spieghi:
+>>>
+>>>
+>>> int sendRequest( int sfd, OpType code, char *fn, struct sockaddr_in
+>>> *serv){
+>>> if(code!=RRQ && code!=WRQ) return FALSE;
+>>>
+>>> // BUILD RRQ/WRK message
+>>> TftpMsg msg;
+>>> memset(&msg, 0, sizeof(msg));
+>>> msg.opType = code;
+>>> msg.TftpMsg_u.rrqMsg.fileName = fn;
+>>> msg.TftpMsg_u.rrqMsg.mode = OCTET;
+>>>
+>>> if ( encodeMsg(&msg ) > 0 ){
+>>> int nsent;
+>>> if(serv!=NULL)
+>>> nsent = sendto(sfd, bufferEnc, xdr_getpos(&xdrsEnc), 0, (struct
+>>> sockaddr *)serv, sizeof(struct sockaddr_in));
+>>> else
+>>> nsent = read(sfd, bufferEnc, xdr_getpos(&xdrsEnc));
+>>> return nsent;
+>>> }
+>>> else{
+>>> perror("{ Error during encoding of the XDR stream (req) }");
+>>> return -1;
+>>> }
+>>>
+>>> }
+>>>
+>>
+>>
+>
+>
+
+
