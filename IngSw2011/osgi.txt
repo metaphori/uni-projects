@@ -1,0 +1,25 @@
+install file:plugins/it.unibo.basicInterfaces_1.4.4.jar
+install file:plugins/it.unibo.system_1.0.0.jar
+install file:plugins/it.unibo.supports_1.0.0.jar
+install file:plugins/it.unibo.envBaseAwt_1.4.4.jar
+
+install file:plugins/it.unibo.contaKm.displayAwt_1.0.0.jar
+install file:plugins/it.unibo.contaKm.domain_1.0.0.jar
+
+install file:plugins/it.unibo.exp.interfaces_1.0.0.jar
+install file:plugins/it.unibo.exp.interpreter_1.0.0.jar
+install file:plugins/it.unibo.exp.lexer_1.0.0.jar
+install file:plugins/it.unibo.exp.parser_1.0.0.jar
+install file:plugins/it.unibo.exp.token_1.0.0.jar
+install file:plugins/it.unibo.exp.expr_1.0.0.jar
+install file:plugins/it.unibo.exp.input_1.0.0.jar
+
+install file:plugins/it.unibo.ccc.domain_1.0.0.jar
+install file:plugins/it.unibo.ccc.system_1.0.0.jar
+install file:plugins/it.unibo.ccc.gui_1.0.0.jar
+install file:plugins/it.unibo.ccc.impl_1.0.0.jar
+install file:plugins/it.unibo.ccc.vehicle_1.0.0.jar
+install file:plugins/it.unibo.ccc.chiefvehicle_1.0.0.jar
+
+
+

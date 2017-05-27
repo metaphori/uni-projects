@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EnvBase
+Bundle-SymbolicName: it.unibo.envBaseAwt
+Bundle-Version: 1.4.4
+Bundle-Activator: it.unibo.envbase.Activator
+Bundle-Vendor: Unibo
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: it.unibo.baseEnv.androidLike,
+ it.unibo.baseEnv.basicFrame,
+ it.unibo.baseEnv.basicgui.input,
+ it.unibo.baseEnv.basicgui.output
+Require-Bundle: it.unibo.basicInterfaces;bundle-version="1.4.4"

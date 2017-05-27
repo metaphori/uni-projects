@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Supports
+Bundle-SymbolicName: it.unibo.supports
+Bundle-Version: 1.0.0
+Bundle-Activator: it.unibo.supports.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.3.0"
+Require-Bundle: it.unibo.basicInterfaces;bundle-version="1.4.4",
+ it.unibo.system;bundle-version="1.0.0"
+Export-Package: it.unibo.platform.tcp,
+ it.unibo.supports,
+ it.unibo.supports.tcp,
+ it.unibo.supports.udp
